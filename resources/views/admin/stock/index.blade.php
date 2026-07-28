@@ -7,5 +7,6 @@
 </head>
 <body>
     <h1>Stock Index Page</h1>
+    <h2>List of Stocks</h2>
 </body>
 </html>
