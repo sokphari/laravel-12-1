@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',function(){
-    return view('layouts.app');
+    return view('layouts.admin.app');
 });
 Route::get('/navbar',function(){
     return view('components.navbar');
