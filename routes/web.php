@@ -29,3 +29,8 @@ Route::get('/instructor',function(){
 Route::get('/user',function(){
     return view('admin.user.index');
 });
+
+
+Route::get('/product',function(){
+    return view('admin.products.index');
+});
