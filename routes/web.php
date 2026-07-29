@@ -14,15 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/',function(){
+Route::get('/', function () {
     return view('layouts.admin.app');
 });
-Route::get('/navbar',function(){
+Route::get('/navbar', function () {
     return view('components.navbar');
 });
-Route::get('/student',function(){
+Route::get('/student', function () {
     return view('pages.student.index');
 });
-Route::get('/instructor',function(){
+Route::get('/instructor', function () {
     return view('pages.instructor.index');
 });
+Route::get('/categories', function () {
+    return view('admin.categories.index');
+})->name('admin.categories.index');
