@@ -1,30 +1,9 @@
-{{-- @extends() --}}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employees / Users Dashboard</title>
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans" x-data="{ openAddModal: false }">
-
+@extends('layouts.admin.app')
+@yield('content')
+@section('page-heading','Employees / Users')
+@section('content')
     <div class="max-w-7xl mx-auto px-4 py-8">
         
-        <!-- Top Nav / Profile Mock -->
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-2xl font-bold text-gray-900">Employees / Users</h1>
-            <div class="flex items-center gap-4">
-                <div class="relative bg-white border border-gray-200 rounded-lg flex items-center px-3 py-1.5 w-80 shadow-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    {{-- <input type="text" placeholder="Search users by name, email, or role..." class="w-full text-xs bg-transparent outline-none text-gray-600 placeholder-gray-400"> --}}
-                </div>
-            </div>
-        </div>
-
         <!-- Metric Cards -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
             <!-- Card 1 -->
@@ -157,6 +136,4 @@
             </div>
         </div>
     </div>
-
-</body>
-</html>
+@endsection

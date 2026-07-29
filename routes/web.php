@@ -26,6 +26,6 @@ Route::get('/student',function(){
 Route::get('/instructor',function(){
     return view('pages.instructor.index');
 });
-Route::get('/employee.user',function(){
+Route::get('/user',function(){
     return view('admin.user.index');
 });
