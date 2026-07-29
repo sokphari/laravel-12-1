@@ -77,7 +77,7 @@
         </a>
 
         <a
-            href=""
+            href="{{ url('/product') }}"
             @class([
                 'flex items-center gap-4 rounded-xl px-4 py-3 text-sm font-semibold transition',
                 'bg-blue-50 text-blue-600' => request()->routeIs('admin.categories.*'),
