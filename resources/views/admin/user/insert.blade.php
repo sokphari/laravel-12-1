@@ -2,7 +2,7 @@
 <!-- @yield('content') -->
 @section('page-heading','Create User Data')
 @section('content')
-<div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-md border border-gray-100">
+<div class="max-w-7xl mx-auto bg-white p-8 rounded-xl shadow-md border border-gray-100">
     <div class="flex justify-between">
         <a href="{{ url('/users') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-white bg-white border border-gray-300 rounded-lg hover:bg-red-500 transition-colors">
             <!-- Left Chevron SVG -->
