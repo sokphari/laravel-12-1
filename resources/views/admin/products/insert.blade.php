@@ -3,5 +3,5 @@
 @section('title', 'Product Dashboard')
 
 @section('content')
-    
+    @include('admin.products.addproduct')
 @endsection

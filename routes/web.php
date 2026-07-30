@@ -42,3 +42,4 @@ Route::get('/product',function(){
 Route::get('/product/insert',function(){
     return view('admin.products.insert');
 });
+Route::view('/admin/products', 'admin.products.index')->name('admin.products.index');
