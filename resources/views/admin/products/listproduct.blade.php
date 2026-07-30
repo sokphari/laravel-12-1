@@ -9,10 +9,10 @@
           <h2 class="text-lg font-bold text-slate-900">Product List</h2>
           <p class="text-sm text-slate-400">Manage and view all products in your inventory.</p>
         </div>
-        <button class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm shadow-blue-200 transition">
+        <a href="{{ url('/product/insert') }}" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm shadow-blue-200 transition">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           Add Product
-        </button>
+        </a>
       </div>
 
       <!-- Filters -->
@@ -79,7 +79,12 @@
       <div class="flex flex-wrap items-center justify-between gap-4 p-5 border-t border-slate-100 mt-2">
         <p class="text-sm text-slate-500" id="pagination-info">Showing 1 to 7 of 1,248 products</p>
         <div class="flex items-center gap-2" id="pagination-controls">
-          <!-- pagination buttons injected by JS -->
+              <button class="px-3 py-1 rounded border border-gray-200 hover:bg-gray-50">&lt;</button>
+              <button class="px-3 py-1 rounded boder bg-blue-600 text-white font-medium">1</button>
+              <button class="px-3 py-1 rounded border border-gray-200 hover:bg-gray-50">2</button>
+              <button class="px-3 py-1 rounded border border-gray-200 hover:bg-gray-50">3</button>
+              <button class="px-3 py-1 rounded border border-gray-200 hover:bg-gray-50">4</button>
+              <button class="px-3 py-1 rounded border border-gray-200 hover:bg-gray-50">&gt;</button>
         </div>
       </div>
     </div>
