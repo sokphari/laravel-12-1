@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,6 @@ Route::get('/student',function(){
 Route::get('/instructor',function(){
     return view('pages.instructor.index');
 });
+Route::get('/employees', function(){
+    return view('admin.Employee.index');
+})->name('admin.employees.index');
