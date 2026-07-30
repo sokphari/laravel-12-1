@@ -13,7 +13,7 @@
         <h2 class="text-2xl font-bold text-gray-800 mb-6">Create User</h2>
     </div>
 
-  <form class="space-y-5" action="{{ route('static.store') }}" method="POST">
+  <form class="space-y-5" action="" method="POST">
     @csrf
 
     <!-- User Name -->
