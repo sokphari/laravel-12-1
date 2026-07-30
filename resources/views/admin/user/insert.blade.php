@@ -1,5 +1,4 @@
 @extends('layouts.admin.app')
-<!-- @yield('content') -->
 @section('page-heading','Create User Data')
 @section('content')
 <div class="max-w-7xl mx-auto bg-white p-8 rounded-xl shadow-md border border-gray-100">
@@ -14,8 +13,9 @@
         <h2 class="text-2xl font-bold text-gray-800 mb-6">Create User</h2>
     </div>
 
-  <form class="space-y-5" action="" method="POST">
-    
+  <form class="space-y-5" action="{{ route('static.store') }}" method="POST">
+    @csrf
+
     <!-- User Name -->
     <div>
       <label for="userName" class="block text-sm font-semibold text-gray-700 mb-1">User Name</label>
@@ -71,9 +71,11 @@
 
     <!-- Form Actions -->
     <div class="flex items-center justify-end space-x-3 pt-4 border-t border-gray-100">
-      <button type="cencel" class="px-5 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all">
-        Cancel
-      </button>
+      <a href="">
+        <button type="cencel" class="px-5 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all">
+          Cancel
+        </button>
+      </a>
       <a href="">
         <button type="submit" class="px-5 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm transition-all">
             Save User
