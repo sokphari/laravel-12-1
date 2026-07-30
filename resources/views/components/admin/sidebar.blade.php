@@ -92,17 +92,11 @@
         </a>
 
         <a
-<<<<<<< HEAD
-            href=""
-            @class([ 'flex items-center gap-4 rounded-xl px-4 py-3 text-sm font-semibold transition' , 'bg-blue-50 text-blue-600'=> request()->routeIs('admin.users.*'),
-            'text-slate-600 hover:bg-slate-50 hover:text-slate-950' => !request()->routeIs('admin.users.*'),
-=======
             href="{{url('/users')}}"
             @class([
                 'flex items-center gap-4 rounded-xl px-4 py-3 text-sm font-semibold transition',
                 'bg-blue-50 text-blue-600' => request()->routeIs('admin.users.*'),
                 'text-slate-600 hover:bg-slate-50 hover:text-slate-950' => !request()->routeIs('admin.users.*'),
->>>>>>> 7919524580cabd12498542f0a144bad2ed4f24c6
             ])
             >
             <svg
