@@ -74,7 +74,7 @@
                     </select>
                     <!-- Add User Button Trigger -->
                     <button @click="openAddModal = true" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1.5 transition">
-                        <span>+ Add User</span>
+                        <a href="{{ url('/users/create') }}"><span>+ Add User</span></a>
                     </button>
                 </div>
             </div>
