@@ -29,3 +29,12 @@ Route::get('/instructor', function () {
 Route::get('/categories', function () {
     return view('admin.categories.index');
 })->name('admin.categories.index');
+Route::get('/users',function(){
+    return view('admin.user.index');
+});
+Route::get('/users/create',function(){
+    return view('admin.user.insert');
+});
+Route::get('/product',function(){
+    return view('admin.products.index');
+});

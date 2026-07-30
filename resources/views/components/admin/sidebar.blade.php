@@ -44,9 +44,11 @@
         </a>
 
         <a
-            href=""
-            @class([ 'flex items-center gap-4 rounded-xl px-4 py-3 text-sm font-semibold transition' , 'bg-blue-50 text-blue-600'=> request()->routeIs('admin.products.*'),
-            'text-slate-600 hover:bg-slate-50 hover:text-slate-950' => !request()->routeIs('admin.products.*'),
+            href="{{ url('/product') }}"
+            @class([
+                'flex items-center gap-4 rounded-xl px-4 py-3 text-sm font-semibold transition',
+                'bg-blue-50 text-blue-600' => request()->routeIs('admin.products.*'),
+                'text-slate-600 hover:bg-slate-50 hover:text-slate-950' => !request()->routeIs('admin.products.*'),
             ])
             >
             <svg
@@ -90,9 +92,17 @@
         </a>
 
         <a
+<<<<<<< HEAD
             href=""
             @class([ 'flex items-center gap-4 rounded-xl px-4 py-3 text-sm font-semibold transition' , 'bg-blue-50 text-blue-600'=> request()->routeIs('admin.users.*'),
             'text-slate-600 hover:bg-slate-50 hover:text-slate-950' => !request()->routeIs('admin.users.*'),
+=======
+            href="{{url('/users')}}"
+            @class([
+                'flex items-center gap-4 rounded-xl px-4 py-3 text-sm font-semibold transition',
+                'bg-blue-50 text-blue-600' => request()->routeIs('admin.users.*'),
+                'text-slate-600 hover:bg-slate-50 hover:text-slate-950' => !request()->routeIs('admin.users.*'),
+>>>>>>> 7919524580cabd12498542f0a144bad2ed4f24c6
             ])
             >
             <svg
@@ -106,8 +116,8 @@
                     stroke-linejoin="round"
                     d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.203-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
             </svg>
-
             <span>Employees / Users</span>
+
         </a>
 
         <form
