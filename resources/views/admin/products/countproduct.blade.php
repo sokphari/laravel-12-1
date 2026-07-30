@@ -10,7 +10,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body >
-<div class="flex items-center justify-center p-6">
+<div class="flex items-center justify-center px-6">
     <!-- Metrics Grid Container -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-7xl">
 
