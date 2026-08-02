@@ -30,7 +30,7 @@
                     <td>{{ $student->address }}</td>
                     <td>
                         @if ($student->image)
-                            <img src="{{ asset('storage/' . $student->image) }}" alt="Image" width="100">
+                            <img src="{{ asset('images/'.$student->image)}}" alt="Image" width="100">
                         @endif
                     </td>
                     <td>{{ $student->created_at }}</td>

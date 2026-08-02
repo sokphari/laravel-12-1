@@ -84,7 +84,7 @@
             </div>
 
             <!-- Laravel Form -->
-            <form action="{{route('student.update',$student->id)}}" method="post" class="space-y-5">
+            <form action="{{route('student.update',$student->id)}}" enctype="multipart/form-data" method="post" class="space-y-5">
                 @csrf
                 @method('PUT')
                 <!-- Name Field -->
@@ -179,6 +179,19 @@
                             class="w-full pl-10 pr-4 py-3 bg-black/60 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition duration-200">
                     </div>
                 </div>
+                <!-- edit image field -->
+                <div>
+                    <label for="image" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+                        Image
+                    </label>
+                    <div class="relative">
+                        <input
+                            type="file"
+                            id="image"
+                            name="image"
+                            class="w-full pl-10 pr-4 py-3 bg-black/60 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition duration-200">
+                    </div>
+                </div>
 
                 <!-- Submit Button -->
                 <div class="pt-3">
@@ -191,6 +204,7 @@
                         </svg>
                     </button>
                 </div>
+
 
             </form>
         </div>
