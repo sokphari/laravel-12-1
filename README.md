@@ -1,0 +1,1 @@
+MVC = Model(DB) + View(UI) + Controller(method 7)
