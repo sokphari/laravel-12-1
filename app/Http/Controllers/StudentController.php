@@ -37,4 +37,28 @@ class StudentController extends Controller
             echo ''.$e->getMessage();
         }
     }
+    public function edit(int $id){
+        try{
+            $student = Student::findOrFail($id);
+            return view('students.edit',compact('student'));
+        }catch(\Exception $e){
+            echo ''.$e->getMessage();
+        }
+    }
+    public function update(Request $request , int $id){
+        try{
+            $validate = $request->validate([
+                'name' => 'required|string|max:255',
+                'gender' => 'required|in:male,female',
+                'phone' => 'required|string|max:20',
+                'address' => 'required|string|max:255'
+            ]);
+            $student = Student::find($id);
+            $student->update($validate);
+            return redirect()->route('student.index');
+
+        }catch(\Exception $e){
+            echo ''.$e->getMessage();
+        }
+    }
 }

@@ -36,6 +36,7 @@
                     <td>{{ $student->created_at }}</td>
                     <td>{{ $student->updated_at }}</td>
                     <td>
+                        <a href="{{route('student.edit',$student->id)}}">EDIT</a>
                         <form action="{{route('student.destroy',$student->id)}}" method="post">
                             @csrf
                             @method('DELETE')

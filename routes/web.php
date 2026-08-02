@@ -19,8 +19,10 @@ Route::get('/', function () {
 });
 Route::controller(StudentController::class)
        ->group(function(){
-       Route::get('/','index');
+       Route::get('/','index')->name('student.index');
        Route::post('/student','store')->name('student.store');
        Route::get('/create','create');
        Route::delete('/student/{id}','destroy')->name('student.destroy');
+       Route::get('/student/edit/{id}','edit')->name('student.edit');
+       Route::put('/student/update/{id}','update')->name('student.update');
 });
