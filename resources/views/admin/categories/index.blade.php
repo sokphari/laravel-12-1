@@ -2,27 +2,24 @@
 <html lang="en">
 @extends('layouts.admin.app')
 @section('title', 'Categories')
+@section('page-heading','Categories')
 @section('content')
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category Dashboard</title>
-
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
 </head>
-
 <body class="bg-slate-100">
-    <div class="max-w-7xl mx-auto py-8 px-6 ">
+    <div class="max-w-7xl mx-auto px-6 ">
 
         <!-- ========================= -->
         <!-- Statistic Cards -->
         <!-- ========================= -->
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mt-0 ">
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2 mt-0 ">
 
             <!-- Card -->
 
@@ -390,85 +387,69 @@
 
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
 
-                <h3 class="font-semibold text-lg mb-6">
-                    Top Categories
-                </h3>
-
                 <div class="space-y-6">
 
-                    <div>
+    <!-- Electronics -->
+    <div>
+        <div class="flex items-center justify-between text-sm mb-2">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-tv text-blue-600"></i>
+                <span>Electronics</span>
+            </div>
+            <span>320</span>
+        </div>
 
-                        <div class="flex justify-between text-sm mb-2">
+        <div class="h-2 bg-slate-200 rounded-full">
+            <div class="h-2 bg-blue-600 rounded-full w-full"></div>
+        </div>
+    </div>
 
-                            <span>Electronics</span>
+    <!-- Stationery -->
+    <div>
+        <div class="flex items-center justify-between text-sm mb-2">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-pen text-yellow-500"></i>
+                <span>Stationery</span>
+            </div>
+            <span>210</span>
+        </div>
 
-                            <span>320</span>
+        <div class="h-2 bg-slate-200 rounded-full">
+            <div class="h-2 bg-yellow-500 rounded-full w-3/4"></div>
+        </div>
+    </div>
 
-                        </div>
+    <!-- Furniture -->
+    <div>
+        <div class="flex items-center justify-between text-sm mb-2">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-couch text-purple-500"></i>
+                <span>Furniture</span>
+            </div>
+            <span>150</span>
+        </div>
 
-                        <div class="h-2 bg-slate-200 rounded-full">
+        <div class="h-2 bg-slate-200 rounded-full">
+            <div class="h-2 bg-purple-500 rounded-full w-1/2"></div>
+        </div>
+    </div>
 
-                            <div class="h-2 bg-blue-600 rounded-full w-full"></div>
+    <!-- Accessories -->
+    <div>
+        <div class="flex items-center justify-between text-sm mb-2">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-headphones text-cyan-500"></i>
+                <span>Accessories</span>
+            </div>
+            <span>98</span>
+        </div>
 
-                        </div>
+        <div class="h-2 bg-slate-200 rounded-full">
+            <div class="h-2 bg-cyan-500 rounded-full w-2/5"></div>
+        </div>
+    </div>
 
-                    </div>
-
-                    <div>
-
-                        <div class="flex justify-between text-sm mb-2">
-
-                            <span>Stationery</span>
-
-                            <span>210</span>
-
-                        </div>
-
-                        <div class="h-2 bg-slate-200 rounded-full">
-
-                            <div class="h-2 bg-yellow-500 rounded-full w-3/4"></div>
-
-                        </div>
-
-                    </div>
-
-                    <div>
-
-                        <div class="flex justify-between text-sm mb-2">
-
-                            <span>Furniture</span>
-
-                            <span>150</span>
-
-                        </div>
-
-                        <div class="h-2 bg-slate-200 rounded-full">
-
-                            <div class="h-2 bg-purple-500 rounded-full w-1/2"></div>
-
-                        </div>
-
-                    </div>
-
-                    <div>
-
-                        <div class="flex justify-between text-sm mb-2">
-
-                            <span>Accessories</span>
-
-                            <span>98</span>
-
-                        </div>
-
-                        <div class="h-2 bg-slate-200 rounded-full">
-
-                            <div class="h-2 bg-cyan-500 rounded-full w-2/5"></div>
-
-                        </div>
-
-                    </div>
-
-                </div>
+</div>
 
                 <button
                     class="w-full mt-8 border border-blue-500 text-blue-600 rounded-xl py-3 hover:bg-blue-50">

@@ -30,6 +30,9 @@ Route::get('/instructor', function () {
 Route::get('/categories', function () {
     return view('admin.categories.index');
 })->name('admin.categories.index');
+Route::get('/categories/create', function(){
+    return view('admin.categories.add');
+});
 
 Route::get('/users',function(){
     return view('admin.user.index');
