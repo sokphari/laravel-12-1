@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\user\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +30,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/categories', function () {
     return view('admin.categories.index');
 })->name('admin.categories.index');
-Route::get('/categories/create', function(){
-    return view('admin.categories.add');
-})->name('create');
 
 Route::get('/users',function(){
     return view('admin.user.index');
@@ -52,6 +49,18 @@ Route::get('/product',function(){
 Route::get('/product/insert',function(){
     return view('admin.products.insert');
 });
+Route::get('/employees', function(){
+    return view('admin.Employee.index');
+})->name('admin.employees.index');
 
-Route::view('/admin/products', 'admin.products.index')->name('admin.products.index');
 
+
+// Login page shows first
+Route::get('/', function () {
+    return view('auth.login');
+})->name('login');
+
+// Register page
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
