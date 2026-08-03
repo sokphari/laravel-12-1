@@ -19,20 +19,15 @@
     </style>
 </head>
 <body class="p-6 md:p-12">
-
-    <div class="max-w-7xl mx-auto">
-        
+    <div class="max-w-7xl mx-auto"> 
         <!-- Header -->
         <div class="mb-6">
             <h1 class="text-3xl font-bold text-gray-800">Employee Management</h1>
             <p class="text-gray-500">Overview of your team's roles and recent additions.</p>
         </div>
-
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
-
             <!-- Role Distribution -->
             <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition duration-300">
-
                 <div class="flex items-center justify-between px-6 py-5 border-b bg-gradient-to-r from-blue-600 to-indigo-600">
                     <h2 class="text-lg font-semibold text-white">
                         Role Distribution
@@ -151,7 +146,6 @@
                             </p>
                         </div>
                     </div>
-
                     <!-- User 3 -->
                     <div class="flex items-center justify-between p-5 hover:bg-gray-50 transition">
                         <div class="flex items-center gap-4">
