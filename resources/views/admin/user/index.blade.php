@@ -1,6 +1,7 @@
+@section('page-heading', 'Employees / Users')
+
 @extends('layouts.admin.app')
-@yield('content')
-@section('page-heading','Employees / Users')
+
 @section('content')
     <div class="max-w-7xl mx-auto px-4 py-8">
         
@@ -61,7 +62,7 @@
         </div>
 
         <!-- Main User List Section -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden" x-data="{ openAddModal: false }">
             <div class="p-4 border-b border-gray-100 flex justify-between items-center">
                 <h2 class="font-semibold text-gray-800 text-lg">User List</h2>
                 
@@ -72,10 +73,11 @@
                     <select class="border border-gray-200 text-xs rounded-lg px-3 py-2 bg-white text-gray-600 outline-none">
                         <option>All Statuses</option>
                     </select>
-                    <!-- Add User Button Trigger -->
-                    <button @click="openAddModal = true" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1.5 transition">
-                        <a href="{{ url('/users/create') }}"><span>+ Add User</span></a>
-                    </button>
+                    
+                    <!-- Add User Button / Trigger -->
+                    <a href="{{ url('/users/create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1.5 transition">
+                        <span>+ Add User</span>
+                    </a>
                 </div>
             </div>
 
@@ -89,11 +91,23 @@
                         <th class="py-3 px-6">Department</th>
                         <th class="py-3 px-6">Status</th>
                         <th class="py-3 px-6">Last Login</th>
-                        <th class="py-3 px-6 text-right">Actions</th>
+                        <th class="py-3 px-6">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 text-sm">
-                    
+                    <tr class="text-gray-600 hover:bg-gray-50/50 transition">
+                        <td class="py-3 px-6">Al Nasser</td>
+                        <td class="py-3 px-6">alnasser@gmail.com</td>
+                        <td class="py-3 px-6">Admin</td>
+                        <td class="py-3 px-6">IT</td>
+                        <td class="py-3 px-6">
+                            <span class="px-2 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-full">Active</span>
+                        </td>
+                        <td class="py-3 px-6 text-gray-500 text-xs">20/02/2025 20:00</td>
+                        <td class="text-center">
+                            <i class="fa-solid fa-ellipsis-vertical text-slate-400"></i>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -113,7 +127,7 @@
     </div>
 
     <!-- MODAL POPUP -->
-    <div x-show="openAddModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" x-cloak>
+    <div x-data="{ openAddModal: false }" x-show="openAddModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" x-cloak>
         <div @click.away="openAddModal = false" class="bg-white rounded-2xl shadow-xl w-full max-w-lg mx-4 overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
                 <h3 class="font-bold text-lg text-gray-900">Add New User</h3>
