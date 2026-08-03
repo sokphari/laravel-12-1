@@ -23,7 +23,7 @@
     {{-- Navigation --}}
     <nav class="mt-5 flex-1 space-y-2">
         <a
-            href="{{ url('/overview') }}"
+            href="{{ url('/') }}"
             @class([ 'flex items-center gap-4 rounded-xl px-4 py-3 text-sm font-semibold transition' , 'bg-blue-50 text-blue-600'=> request()->routeIs('admin.dashboard'),
             'text-slate-600 hover:bg-slate-50 hover:text-slate-950' => !request()->routeIs('admin.dashboard'),
             ])

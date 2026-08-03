@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('layouts.admin.app');
-});
+// Route::get('/', function () {
+//     return view('layouts.admin.app');
+// });
 // Route::get('/navbar', function () {
 //     return view('components.navbar');
 // });
@@ -40,7 +40,7 @@ Route::get('/users',function(){
 Route::get('/users/create',function(){
     return view('admin.user.insert');
 });
-Route::get('/overview', function(){
+Route::get('/', function(){
     return view('admin.overview.overview');
 });
 
