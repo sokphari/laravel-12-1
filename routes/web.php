@@ -27,6 +27,11 @@ Route::get('/student', function () {
 Route::get('/instructor', function () {
     return view('pages.instructor.index');
 });
+
+// Categories
+Route::get('/categories/create',function(){
+    return view('admin.categories.index');
+});
 Route::get('/categories', function () {
     return view('admin.categories.index');
 })->name('admin.categories.index');
