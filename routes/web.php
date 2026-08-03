@@ -18,15 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layouts.admin.app');
 });
-Route::get('/navbar', function () {
-    return view('components.navbar');
-});
-Route::get('/student', function () {
-    return view('pages.student.index');
-});
-Route::get('/instructor', function () {
-    return view('pages.instructor.index');
-});
+// Route::get('/navbar', function () {
+//     return view('components.navbar');
+// });
+// Route::get('/student', function () {
+//     return view('pages.student.index');
+// });
+// Route::get('/instructor', function () {
+//     return view('pages.instructor.index');
+// });
 Route::get('/categories', function () {
     return view('admin.categories.index');
 })->name('admin.categories.index');
@@ -34,11 +34,14 @@ Route::get('/categories/create', function(){
     return view('admin.categories.add');
 })->name('create');
 
-Route::get('/users',function(){
+Route::get('Drs',function(){
     return view('admin.user.index');
 });
 Route::get('/users/create',function(){
     return view('admin.user.insert');
+});
+Route::get('/overview', function(){
+    return view('admin.overview.overview');
 });
 
 
