@@ -193,14 +193,11 @@
 
                         </select>
 
-                        <button
-                            class="bg-blue-600 hover:bg-blue-700 text-white px-5 rounded-xl">
-
+                        <a href="{{ route('create') }}"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl inline-flex items-center">
                             <i class="fa-solid fa-plus mr-2"></i>
-
-                            Add Category
-
-                        </button>
+                            Create Category
+                        </a>
 
                     </div>
 

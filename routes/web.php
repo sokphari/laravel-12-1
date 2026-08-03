@@ -32,7 +32,7 @@ Route::get('/categories', function () {
 })->name('admin.categories.index');
 Route::get('/categories/create', function(){
     return view('admin.categories.add');
-});
+})->name('create');
 
 Route::get('/users',function(){
     return view('admin.user.index');

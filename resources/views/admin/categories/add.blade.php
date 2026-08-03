@@ -19,7 +19,7 @@
         </div>
 
         <!-- Form -->
-        <form action="" method="POST" class="p-8">
+        <form action="{{ route('admin.categories.index') }}" method="POST" class="p-8">
             @csrf
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -84,11 +84,11 @@
             <!-- Buttons -->
             <div class="flex justify-end gap-4 mt-8 border-t border-slate-200 pt-6">
 
-                <button
-                    type="reset"
-                    class="px-6 py-3 rounded-xl border border-slate-300 hover:bg-slate-100">
+                <a href="{{ route('admin.categories.index') }}"
+                    class="bg-gray-500 hover:bg-gray-700 text-white px-5 py-2 rounded-xl inline-flex items-center">
+                    <i class="fa-solid fa-plus mr-2"></i>
                     Cancel
-                </button>
+                </a>
 
                 <button
                     type="submit"
