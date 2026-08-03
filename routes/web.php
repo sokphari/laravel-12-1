@@ -26,3 +26,14 @@ Route::get('/student',function(){
 Route::get('/instructor',function(){
     return view('pages.instructor.index');
 });
+
+
+// Login page shows first
+Route::get('/', function () {
+    return view('auth.login');
+})->name('login');
+
+// Register page
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
