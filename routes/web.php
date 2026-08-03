@@ -34,7 +34,7 @@ Route::get('/categories/create', function(){
     return view('admin.categories.add');
 })->name('create');
 
-Route::get('Drs',function(){
+Route::get('/users',function(){
     return view('admin.user.index');
 });
 Route::get('/users/create',function(){
