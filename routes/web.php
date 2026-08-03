@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,18 +15,41 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/',function(){
+Route::get('/', function () {
     return view('layouts.admin.app');
 });
-Route::get('/navbar',function(){
+Route::get('/navbar', function () {
     return view('components.navbar');
 });
-Route::get('/student',function(){
+Route::get('/student', function () {
     return view('pages.student.index');
 });
-Route::get('/instructor',function(){
+Route::get('/instructor', function () {
     return view('pages.instructor.index');
 });
+Route::get('/categories', function () {
+    return view('admin.categories.index');
+})->name('admin.categories.index');
+
+Route::get('/users',function(){
+    return view('admin.user.index');
+});
+Route::get('/users/create',function(){
+    return view('admin.user.insert');
+});
+
+
+
+Route::get('/product',function(){
+    return view('admin.products.index');
+});
+Route::get('/product/insert',function(){
+    return view('admin.products.insert');
+});
+Route::get('/employees', function(){
+    return view('admin.Employee.index');
+})->name('admin.employees.index');
+
 
 
 // Login page shows first

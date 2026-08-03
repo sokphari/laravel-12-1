@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>hello</h1>
-</body>
-</html>
+{{-- <<<<<<< HEAD
+======= --}}
+@extends('layouts.admin.app')
+
+@section('title', 'Product Dashboard')
+@section('page-heading','Product')
+
+
+@section('content')
+
+    @include('admin.products.countproduct')
+
+    @include('admin.products.listproduct')
+@endsection
+{{-- >>>>>>> db1d91a1397eec7caff68face08ed7ca2b189e4b --}}
