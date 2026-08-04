@@ -38,6 +38,7 @@ Route::get('/users',function(){
 Route::get('/users/create',function(){
     return view('admin.user.insert');
 });
+
 Route::get('/dashboard', function(){
     return view('admin.overview.overview');
 });
