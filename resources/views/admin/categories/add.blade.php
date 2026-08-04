@@ -31,12 +31,12 @@
                     </label>
                     <input
                         type="text"
-                        name="category"
+                        name="name"
                         placeholder="Enter category name"
                         class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
                 </div>
 
-                <!-- Total -->
+                <!-- Total
                 <div>
                     <label class="block mb-2 text-sm font-semibold text-slate-700">
                         Total Items
@@ -46,7 +46,7 @@
                         name="total"
                         placeholder="0"
                         class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
-                </div>
+                </div> -->
 
                 <!-- Status -->
                 <div>
@@ -84,7 +84,7 @@
             <!-- Buttons -->
             <div class="flex justify-end gap-4 mt-8 border-t border-slate-200 pt-6">
 
-                <a href="{{ route('admin.categories.index') }}"
+                <a href="{{ route('index') }}"
                     class="bg-gray-500 hover:bg-gray-700 text-white px-5 py-2 rounded-xl inline-flex items-center">
                     <i class="fa-solid fa-plus mr-2"></i>
                     Cancel

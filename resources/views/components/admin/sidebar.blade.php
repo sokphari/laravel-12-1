@@ -67,7 +67,7 @@
         </a>
 
         <a
-            href="{{ route('admin.categories.index') }}"
+            href="{{ route('index') }}"
             @class([ 'flex items-center gap-4 rounded-xl px-4 py-3 text-sm font-semibold transition' , 'bg-blue-50 text-blue-600'=> request()->routeIs('admin.categories.*'),
             'text-slate-600 hover:bg-slate-50 hover:text-slate-950' => !request()->routeIs('admin.categories.*'),
             ])
