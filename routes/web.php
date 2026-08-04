@@ -31,6 +31,7 @@ Route::get('/categories', function () {
     return view('admin.categories.index');
 })->name('admin.categories.index');
 
+// User / Employee 
 Route::get('/users',function(){
     return view('admin.user.index');
 });
@@ -40,7 +41,6 @@ Route::get('/users/create',function(){
 Route::get('/dashboard', function(){
     return view('admin.overview.overview');
 });
-
 
 
 Route::get('/product',function(){
