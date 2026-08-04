@@ -37,7 +37,7 @@ Route::get('/users',function(){
 Route::get('/users/create',function(){
     return view('admin.user.insert');
 });
-Route::get('/', function(){
+Route::get('/dashboard', function(){
     return view('admin.overview.overview');
 });
 
@@ -48,7 +48,7 @@ Route::get('/product',function(){
 });
 Route::get('/product/insert',function(){
     return view('admin.products.insert');
-});
+})->name('create');
 Route::get('/employees', function(){
     return view('admin.Employee.index');
 })->name('admin.employees.index');

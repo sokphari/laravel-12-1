@@ -15,7 +15,16 @@
     </title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
 </head>
+<style>
+    [x-cloak] {
+        display: none !important;
+    }
+</style>
 
 <body class="bg-slate-50 text-slate-900 antialiased">
     <div
