@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 
@@ -27,9 +28,11 @@ use App\Http\Controllers\EmployeeController;
 // Route::get('/instructor', function () {
 //     return view('pages.instructor.index');
 // });
-Route::get('/categories', function () {
-    return view('admin.categories.index');
-})->name('admin.categories.index');
+Route::post('/categories',[CategoryController::class,'store'])
+->name('admin.categories.index');
+Route::get('/create',[CategoryController::class,'create'])
+->name('create.category');
+Route::get('/index/category',[CategoryController::class,'index'])->name('index');
 
 // User / Employee 
 Route::get('/users',function(){
