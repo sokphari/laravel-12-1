@@ -75,7 +75,7 @@
                     </select>
                     
                     <!-- Add User Button / Trigger -->
-                    <a href="{{ url('/users/create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1.5 transition">
+                    <a href="{{ route('create.users') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1.5 transition">
                         <span>+ Add User</span>
                     </a>
                 </div>
@@ -95,60 +95,61 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 text-sm">
-                    <tr class="text-gray-600 hover:bg-gray-50/50 transition">
-                        <td class="py-3 px-6">Al Nasser</td>
-                        <td class="py-3 px-6">alnasser@gmail.com</td>
-                        <td class="py-3 px-6">Admin</td>
-                        <td class="py-3 px-6">IT</td>
-                        <td class="py-3 px-6">
-                            <span class="px-2 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-full">
-                                Active
-                            </span>
-                        </td>
-                        <td class="py-3 px-6 text-gray-500 text-xs">
-                            20/02/2025 20:00
-                        </td>
+                    @foreach ($users as $user)
+                        <tr class="text-gray-600 hover:bg-gray-50/50 transition">
+                            <td class="py-3 px-6">{{ $user->name }}</td>
+                            <td class="py-3 px-6">{{ $user->email }}</td>
+                            <td class="py-3 px-6">{{ $user->role }}</td>
+                            <td class="py-3 px-6">
+                                <span class="px-2 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-full">
+                                    {{ $user->department }}
+                                </span>
+                            </td>
+                            <td class="py-3 px-6 text-gray-500 text-xs">
+                                Status
+                            </td>
 
-                        <td class="relative py-3 px-6 text-center" x-data="{ open: false }">
-    <button
-        type="button"
-        @click.stop="open = !open"
-        class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition"
-    >
-        <i class="fa-solid fa-ellipsis-vertical"></i>
-    </button>
+                            <td class="relative py-3 px-6 text-center" x-data="{ open: false }">
+                                <button
+                                    type="button"
+                                    @click.stop="open = !open"
+                                    class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition"
+                                >
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
 
-    <div
-        x-show="open"
-        x-transition.origin.top.right
-        @click.outside="open = false"
-        x-cloak
-        class="absolute right-6 top-11 z-50 w-36 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-xl"
-    >
-        <a
-            href="{{ url('/users/1/edit') }}"
-            class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
-        >
-            <i class="fa-solid fa-pen-to-square w-4 text-center"></i>
-            <span>Edit</span>
-        </a>
+                                <div
+                                    x-show="open"
+                                    x-transition.origin.top.right
+                                    @click.outside="open = false"
+                                    x-cloak
+                                    class="absolute right-6 top-11 z-50 w-36 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-xl"
+                                >
+                                    <a
+                                        href="{{ url('/users/1/edit') }}"
+                                        class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                                    >
+                                        <i class="fa-solid fa-pen-to-square w-4 text-center"></i>
+                                        <span>Edit</span>
+                                    </a>
 
-        <form action="{{ url('/users/1') }}" method="POST">
-            @csrf
-            @method('DELETE')
+                                    <form action="{{ url('/users/1') }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
 
-            <button
-                type="submit"
-                onclick="return confirm('Are you sure you want to delete this user?')"
-                class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-red-600 hover:bg-red-50 transition"
-            >
-                <i class="fa-solid fa-trash-can w-4 text-center"></i>
-                <span>Delete</span>
-            </button>
-        </form>
-    </div>
-</td>
-                    </tr>
+                                        <button
+                                            type="submit"
+                                            onclick="return confirm('Are you sure you want to delete this user?')"
+                                            class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-red-600 hover:bg-red-50 transition"
+                                        >
+                                            <i class="fa-solid fa-trash-can w-4 text-center"></i>
+                                            <span>Delete</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
 

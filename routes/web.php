@@ -3,6 +3,7 @@
 use App\Http\Controllers\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,19 +29,14 @@ use App\Http\Controllers\EmployeeController;
 // Route::get('/instructor', function () {
 //     return view('pages.instructor.index');
 // });
-Route::post('/categories',[CategoryController::class,'store'])
-->name('admin.categories.index');
-Route::get('/create',[CategoryController::class,'create'])
-->name('create.category');
+Route::post('/categories',[CategoryController::class,'store'])->name('admin.categories.index');
+Route::get('/create',[CategoryController::class,'create'])->name('create.category');
 Route::get('/index/category',[CategoryController::class,'index'])->name('index');
 
 // User / Employee 
-Route::get('/users',function(){
-    return view('admin.user.index');
-});
-Route::get('/users/create',function(){
-    return view('admin.user.insert');
-});
+Route::post('/users',[UserController::class, 'store'])->name('admin.users.index');
+Route::get('/users/create',[UserController::class, 'create'])->name('create.users');
+Route::get('/users/index',[UserController::class, 'index'])->name('users');
 
 Route::get('/dashboard', function(){
     return view('admin.overview.overview');

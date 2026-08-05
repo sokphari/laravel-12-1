@@ -3,7 +3,7 @@
 @section('content')
 <div class="max-w-7xl mx-auto bg-white p-8 rounded-xl shadow-md border border-gray-100">
     <div class="flex justify-between">
-        <a href="{{ url('/users') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-white bg-white border border-gray-300 rounded-lg hover:bg-red-500 transition-colors">
+        <a href="{{ route('users') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-white bg-white border border-gray-300 rounded-lg hover:bg-red-500 transition-colors">
             <!-- Left Chevron SVG -->
             <svg class="w-4 text-gray-500 hover:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
@@ -13,7 +13,7 @@
         <h2 class="text-2xl font-bold text-gray-800 mb-6">Create User</h2>
     </div>
 
-  <form class="space-y-5" action="" method="POST">
+  <form class="space-y-5" action="{{ route('admin.users.index') }}" method="POST">
     @csrf
 
     <!-- User Name -->
