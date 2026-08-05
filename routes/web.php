@@ -49,6 +49,9 @@ Route::get('/product',function(){
 Route::get('/product/insert',function(){
     return view('admin.products.insert');
 });
+Route::get('/product/edit',function(){
+    return view('admin.products.edit');
+});
 
 Route::view('/admin/products', 'admin.products.index')->name('admin.products.index');
 

@@ -17,7 +17,7 @@
 <body class="bg-slate-50 h-full flex flex-col items-center justify-center overflow-hidden p-6">
 
   <!-- Main Content Wrapper - Expanded to fill the screen nicely -->
-  <main class="max-w-6xl w-full flex flex-col justify-center overflow-hidden">
+  <main class="max-w-8xl w-full flex flex-col justify-center overflow-hidden">
     
     <!-- Page Heading & Back Button Container -->
     <div class="flex items-center justify-between mb-4 shrink-0 px-2">

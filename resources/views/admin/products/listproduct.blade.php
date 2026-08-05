@@ -73,8 +73,9 @@
                     <tr>
                         <td class="py-3 pr-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-lg">
-                                    🎧</div>
+                                <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-lg overflow-hidden">
+                                    <img src="https://i.pinimg.com/736x/70/98/91/709891f06ecfe7260fbcc88787cf59ce.jpg" alt=""  class="w-full h-full">
+                                </div>
                                 <div>
                                     <p class="font-semibold text-slate-800">Wireless Headphones</p>
                                     <p class="text-xs text-slate-400">Sony</p>
@@ -108,10 +109,10 @@
                                 <div
                                     class="action-menu hidden absolute right-12 top-0 w-40 bg-white border border-gray-200 rounded-xl shadow-xl z-50 overflow-hidden">
 
-                                    <button
+                                    <a href="{{ url('/product/edit') }}"
                                         class="w-full flex items-center gap-2 px-4 py-3 hover:bg-yellow-50 text-yellow-700 transition">
                                         ✏️ Edit
-                                    </button>
+                                    </a>
 
                                     <button
                                         class="w-full flex items-center gap-2 px-4 py-3 hover:bg-red-50 text-red-600 transition">
