@@ -4,6 +4,7 @@ use App\Http\Controllers\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Product\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,10 @@ Route::put('/categories/{category}', [CategoryController::class, 'update'])
 Route::get('/index/category', [CategoryController::class, 'index'])->name('index');
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
+
+Route::post('/products',[ProductController::class,'store'])->name('admin.products.store');
+Route::get('/products/create',[ProductController::class,'create'])->name('insert.products');
+Route::get('/products/index',[ProductController::class,'index'])->name('admin.products.index');
 // User / Employee 
 Route::post('/users',[UserController::class, 'store'])->name('admin.users.index');
 Route::get('/users/create',[UserController::class, 'create'])->name('create.users');
@@ -53,16 +58,10 @@ Route::get('/dashboard', function(){
     return view('admin.overview.overview');
 });
 
-
-Route::get('/product',function(){
-    return view('admin.products.index');
-});
-Route::get('/product/insert',function(){
-    return view('admin.products.insert');
-})->name('create');
-Route::get('/employees', function(){
+Route::get('/employees', function () {
     return view('admin.Employee.index');
 })->name('admin.employees.index');
+
 
 
 

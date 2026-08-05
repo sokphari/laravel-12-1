@@ -17,7 +17,7 @@
 <body class="bg-slate-50 h-full flex flex-col items-center justify-center overflow-hidden p-6">
 
   <!-- Main Content Wrapper - Expanded to fill the screen nicely -->
-  <main class="max-w-6xl w-full flex flex-col justify-center overflow-hidden">
+  <main class="max-w-8xl w-full flex flex-col justify-center overflow-hidden">
     
     <!-- Page Heading & Back Button Container -->
     <div class="flex items-center justify-between mb-4 shrink-0 px-2">
@@ -35,17 +35,17 @@
     <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden shrink-0">
 
       <!-- Form Body with comfortable proportions -->
-      <form class="p-6 sm:p-8 space-y-5">
-
+      <form class="p-6 sm:p-8 space-y-5" action="{{ route('admin.products.store') }} " method="POST" enctype="multipart/form-data">
+          @csrf
         <!-- Row 1: Product Name & Brand/Vendor -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Product Name</label>
-            <input type="text" placeholder="e.g. Wireless Headphones" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all">
+            <input type="text" name="name" placeholder="e.g. Wireless Headphones" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Brand / Vendor</label>
-            <input type="text" placeholder="e.g. Sony" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all">
+            <input type="text"  placeholder="e.g. Sony" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all">
           </div>
         </div>
 
@@ -53,12 +53,16 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">SKU Code</label>
-            <input type="text" placeholder="e.g. WH-1000XM5" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all font-mono">
+            <input type="text" name="sku" placeholder="e.g. WH-1000XM5" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all font-mono">
           </div>
           <div>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Category_id</label>
+            <input type="number" name="category_id" placeholder="e.g. WH-1000XM5" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all font-mono">
+          </div>
+          {{-- <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Category</label>
             <div class="relative">
-              <select class="w-full appearance-none bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 pr-10 text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition-all cursor-pointer">
+              <select  name="category_id" class="w-full  appearance-none bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 pr-10 text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition-all cursor-pointer">
                 <option value="" disabled selected>Select category</option>
                 <option>Electronics</option>
                 <option>Furniture</option>
@@ -68,34 +72,47 @@
               </select>
               <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
             </div>
-          </div>
+          </div> --}}
         </div>
 
         <!-- Row 3: Quantity, Price & Status -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
           <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Quantity</label>
-            <input type="number" placeholder="0" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all">
+            <input type="number" name="quantity" placeholder="0" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Price ($)</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-slate-400">$</span>
-              <input type="number" step="0.01" placeholder="0.00" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-8 pr-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all">
+              <input type="number" name="price" step="0.01" placeholder="0.00" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-8 pr-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all">
             </div>
           </div>
           <div>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Stock ($)</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-slate-400">$</span>
+              <input type="number" name="price" step="0.01" placeholder="0.00" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-8 pr-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all">
+            </div>
+          </div>
+          {{-- <div>
             <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Stock Status</label>
             <div class="relative">
-              <select class="w-full appearance-none bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 pr-10 text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition-all cursor-pointer">
+              <select name="stock" class="w-full appearance-none bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 pr-10 text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition-all cursor-pointer">
                 <option value="in-stock">In Stock</option>
                 <option value="low-stock">Low Stock</option>
                 <option value="out-of-stock">Out of Stock</option>
               </select>
               <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
             </div>
-          </div>
+          </div> --}}
         </div>
+        <div>
+    <label>Description</label>
+    <input type="text" name="description"
+        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"
+        rows="4"></input>
+</div>
 
         <!-- Row 4: Product Image File Input -->
         <div>
