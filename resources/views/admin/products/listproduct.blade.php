@@ -8,7 +8,7 @@
                 <h2 class="text-lg font-bold text-slate-900">Product List</h2>
                 <p class="text-sm text-slate-400">Manage and view all products in your inventory.</p>
             </div>
-            <a href="{{ url('/product/insert') }}"
+            <a href="{{ route('insert.products') }}"
                 class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm shadow-blue-200 transition">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -56,11 +56,18 @@
         </div>
 
         <!-- Table -->
-        <div class="overflow-x-auto px-5">
-            <table class="w-full text-sm">
+        <div class=" px-5">
+
+            <table class="w-full text-left border-collapse">
+
+
+
+
                 <thead>
+                    <tr class="text-gray-400 text-xs uppercase border-b border-gray-100 bg-gray-50/50">
                     <tr class="text-slate-400 text-xs uppercase tracking-wide border-b border-slate-100">
                         <th class="text-left font-semibold py-3 pr-4">Product</th>
+                        <th class="text-left font-semibold py-3 pr-4">description</th>
                         <th class="text-left font-semibold py-3 pr-4">SKU</th>
                         <th class="text-left font-semibold py-3 pr-4">Category</th>
                         <th class="text-left font-semibold py-3 pr-4">Quantity</th>
@@ -69,62 +76,64 @@
                         <th class="text-right font-semibold py-3 pl-4">Actions</th>
                     </tr>
                 </thead>
-                <tbody id="table-body" class="divide-y divide-slate-100">
-                    <tr>
+                <tbody class="divide-y divide-gray-100 text-sm">
+                    @foreach ($products as $prd)
+                        
+             
+                    <tr class="text-gray-600 hover:bg-gray-50/50 transition">
                         <td class="py-3 pr-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-lg overflow-hidden">
-                                    <img src="https://i.pinimg.com/736x/70/98/91/709891f06ecfe7260fbcc88787cf59ce.jpg" alt=""  class="w-full h-full">
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-lg overflow-hidden">
+                                    <img src="https://i.pinimg.com/736x/70/98/91/709891f06ecfe7260fbcc88787cf59ce.jpg"
+                                        alt="" class="w-full h-full">
                                 </div>
                                 <div>
-                                    <p class="font-semibold text-slate-800">Wireless Headphones</p>
+                                    <p class="font-semibold text-slate-800">{{$prd->name}}</p>
                                     <p class="text-xs text-slate-400">Sony</p>
                                 </div>
                             </div>
                         </td>
-                        <td class="py-3 pr-4 text-slate-500">WH-1000XM5</td>
+                        
+                        <td class="py-3 pr-4 text-slate-500">{{$prd->description}}</td>
+                        <td class="py-3 pr-4 text-slate-500">{{$prd->sku}}</td>
                         <td class="py-3 pr-4">
                             <span class="px-2.5 py-1 rounded-md text-xs font-semibold ${catClass}">Electronics</span>
                         </td>
-                        <td class="py-3 pr-4 text-slate-700">58</td>
-                        <td class="py-3 pr-4 text-slate-700">79.99</td>
+                        <td class="py-3 pr-4 text-slate-700">{{$prd->quantity}}</td>
+                        <td class="py-3 pr-4 text-slate-700">{{$prd->price}}</td>
                         <td class="py-3 pr-4">
                             <span class="px-2.5 py-1 rounded-md text-xs font-semibold ${statusClass}">In Stock</span>
                         </td>
-                        <td class="text-right py-3 px-4">
+                        <td class="relative py-3  text-right" x-data="{ open: false }">
+                            <button type="button" @click.stop="open = !open"
+                                class="inline-flex h-8 w-8   rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </button>
 
-                            <div class="relative inline-block">
+                            <div x-show="open" x-transition.origin.top.right @click.outside="open = false" x-cloak
+                                class="absolute right-6 top-11 z-50 w-36 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-xl">
+                                <a href="{{ url('/users/1/edit') }}"
+                                    class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                                    <i class="fa-solid fa-pen-to-square w-4 text-center"></i>
+                                    <span>Edit</span>
+                                </a>
 
-                                <!-- Three Dots Button -->
-                                <button type="button"
-                                    class="action-btn w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
-                                        <circle cx="12" cy="5" r="2" />
-                                        <circle cx="12" cy="12" r="2" />
-                                        <circle cx="12" cy="19" r="2" />
-                                    </svg>
-                                </button>
+                                <form action="{{ url('/users/1') }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
 
-                                <!-- Popup Menu -->
-                                <div
-                                    class="action-menu hidden absolute right-12 top-0 w-40 bg-white border border-gray-200 rounded-xl shadow-xl z-50 overflow-hidden">
-
-                                    <a href="{{ url('/product/edit') }}"
-                                        class="w-full flex items-center gap-2 px-4 py-3 hover:bg-yellow-50 text-yellow-700 transition">
-                                        ✏️ Edit
-                                    </a>
-
-                                    <button
-                                        class="w-full flex items-center gap-2 px-4 py-3 hover:bg-red-50 text-red-600 transition">
-                                        🗑️ Delete
+                                    <button type="submit"
+                                        onclick="return confirm('Are you sure you want to delete this user?')"
+                                        class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-red-600 hover:bg-red-50 transition">
+                                        <i class="fa-solid fa-trash-can w-4 text-center"></i>
+                                        <span>Delete</span>
                                     </button>
-
-                                </div>
-
+                                </form>
                             </div>
-
                         </td>
                     </tr>
+                           @endforeach
                 </tbody>
             </table>
         </div>
@@ -146,38 +155,77 @@
     <p class="text-center text-xs text-slate-300 mt-6">Product inventory dashboard — demo UI</p>
 </main>
 
+<!-- Chart.js Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const buttons = document.querySelectorAll(".action-btn");
-
-    buttons.forEach(button => {
-
-        button.addEventListener("click", function(e) {
-
-            e.stopPropagation();
-
-            const menu = this.nextElementSibling;
-
-            document.querySelectorAll(".action-menu").forEach(item => {
-                if (item !== menu) {
-                    item.classList.add("hidden");
-                }
-            });
-
-            menu.classList.toggle("hidden");
-
-        });
-
-    });
-
-    document.addEventListener("click", function() {
+    function toggleMenu(button) {
+        // Close all other menus
         document.querySelectorAll(".action-menu").forEach(menu => {
-            menu.classList.add("hidden");
+            if (menu !== button.nextElementSibling) {
+                menu.classList.add("hidden");
+            }
         });
-    });
 
-    document.querySelectorAll(".action-menu").forEach(menu => {
-        menu.addEventListener("click", function(e) {
-            e.stopPropagation();
+        // Toggle current menu
+        button.nextElementSibling.classList.toggle("hidden");
+    }
+
+    // Close when clicking outside
+    document.addEventListener("click", function(e) {
+        if (!e.target.closest("td")) {
+            document.querySelectorAll(".action-menu").forEach(menu => {
+                menu.classList.add("hidden");
+            });
+        }
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+        const ctx = document.getElementById('roleChart').getContext('2d');
+
+        // Hardcoded static data for the frontend display
+        const adminCount = 5;
+        const managerCount = 5;
+        const staffCount = 14;
+
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Admin', 'Manager', 'Staff'],
+                datasets: [{
+                    data: [adminCount, managerCount, staffCount],
+                    backgroundColor: [
+                        '#3B82F6', // Blue-500
+                        '#A855F7', // Purple-500
+                        '#22C55E' // Green-500
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '75%', // Creates the hollow center
+                plugins: {
+                    legend: {
+                        display: false // Hidden since the HTML handles the custom legend
+                    },
+                    tooltip: {
+                        enabled: true,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
         });
     });
 </script>

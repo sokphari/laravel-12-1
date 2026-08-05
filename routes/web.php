@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\Product\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,43 +17,51 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('layouts.admin.app');
-});
-Route::get('/navbar', function () {
-    return view('components.navbar');
-});
-Route::get('/student', function () {
-    return view('pages.student.index');
-});
-Route::get('/instructor', function () {
-    return view('pages.instructor.index');
-});
-Route::get('/categories', function () {
-    return view('admin.categories.index');
-})->name('admin.categories.index');
-Route::get('/categories/create', function(){
-    return view('admin.categories.add');
-})->name('create');
+// Route::get('/', function () {
+//     return view('layouts.admin.app');
+// });
+// Route::get('/navbar', function () {
+//     return view('components.navbar');
+// });
+// Route::get('/student', function () {
+//     return view('pages.student.index');
+// });
+// Route::get('/instructor', function () {
+//     return view('pages.instructor.index');
+// });
+Route::post('/categories', [CategoryController::class, 'store'])->name('admin.categories.index');
+Route::get('/create', [CategoryController::class, 'create'])->name('create.category');
+Route::get('/index/category', [CategoryController::class, 'index'])->name('index');
 
-Route::get('/users',function(){
+
+Route::post('/products',[ProductController::class,'store'])->name('admin.products.store');
+Route::get('/products/create',[ProductController::class,'create'])->name('insert.products');
+Route::get('/products/index',[ProductController::class,'index'])->name('admin.products.index');
+
+// User / Employee 
+Route::get('/users', function () {
     return view('admin.user.index');
 });
-Route::get('/users/create',function(){
+Route::get('/users/create', function () {
     return view('admin.user.insert');
 });
-
-
-
-Route::get('/product',function(){
-    return view('admin.products.index');
-});
-Route::get('/product/insert',function(){
-    return view('admin.products.insert');
-});
-Route::get('/product/edit',function(){
-    return view('admin.products.edit');
+Route::get('/dashboard', function () {
+    return view('admin.overview.overview');
 });
 
-Route::view('/admin/products', 'admin.products.index')->name('admin.products.index');
+Route::get('/employees', function () {
+    return view('admin.Employee.index');
+})->name('admin.employees.index');
 
+
+
+
+// Login page shows first
+Route::get('/', function () {
+    return view('auth.login');
+})->name('login');
+
+// Register page
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
