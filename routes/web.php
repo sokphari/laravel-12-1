@@ -45,6 +45,9 @@ Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])-
 Route::post('/users',[UserController::class, 'store'])->name('admin.users.index');
 Route::get('/users/create',[UserController::class, 'create'])->name('create.users');
 Route::get('/users/index',[UserController::class, 'index'])->name('users');
+Route::get('/users/{id}/edit',[UserController::class, 'edit'])->name('edit.users');
+Route::get('/users/update',[UserController::class, 'update'])->name('update.users');
+Route::get('/users/{id}',[UserController::class, 'destroy'])->name('destroy.users');
 
 Route::get('/dashboard', function(){
     return view('admin.overview.overview');
