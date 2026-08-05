@@ -20,7 +20,7 @@
         body {
             min-height: 100vh;
             font-family: Arial, sans-serif;
-            background: #f4f7fc;
+            background: pink;
             display: flex;
             justify-content: center;
             align-items: center;
