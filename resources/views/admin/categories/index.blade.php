@@ -252,15 +252,49 @@
                                 <td>
 
                                     <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">
-                                        Active
+                                        {{ $category->status }}
                                     </span>
 
                                 </td>
 
-                                <td class="text-center">
+                                <td class="relative py-3 px-6 text-center" x-data="{ open: false }">
+                                    <button
+                                        type="button"
+                                        @click.stop="open = !open"
+                                        class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition"
+                                    >
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
 
-                                    <i class="fa-solid fa-ellipsis-vertical text-slate-400"></i>
+                                    <div
+                                        x-show="open"
+                                        x-transition.origin.top.right
+                                        @click.outside="open = false"
+                                        x-cloak
+                                        class="absolute right-6 top-11 z-50 w-36 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-xl"
+                                    >
+                                        <a
+                                            href="{{ route('category.edit', ['category' => $category->id]) }}"
+                                            class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                                        >
+                                            <i class="fa-solid fa-pen-to-square w-4 text-center"></i>
+                                            <span>Edit</span>
+                                        </a>
 
+                                        <form action="{{ route('category.destroy', ['category' => $category->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button
+                                                type="submit"
+                                                onclick="return confirm('Are you sure you want to delete this user?')"
+                                                class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-red-600 hover:bg-red-50 transition"
+                                            >
+                                                <i class="fa-solid fa-trash-can w-4 text-center"></i>
+                                                <span>Delete</span>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
 
                             </tr>

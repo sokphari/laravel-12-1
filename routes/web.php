@@ -28,11 +28,17 @@ use App\Http\Controllers\EmployeeController;
 // Route::get('/instructor', function () {
 //     return view('pages.instructor.index');
 // });
-Route::post('/categories',[CategoryController::class,'store'])
-->name('admin.categories.index');
-Route::get('/create',[CategoryController::class,'create'])
-->name('create.category');
-Route::get('/index/category',[CategoryController::class,'index'])->name('index');
+// Route::get('/categories', [CategoryController::class, 'index'])
+//     ->name('admin.categories.index');
+Route::post('/categories', [CategoryController::class, 'store'])->name('category.store');
+Route::get('/create', [CategoryController::class, 'create'])
+    ->name('create.category');
+Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])
+    ->name('category.edit');
+Route::put('/categories/{category}', [CategoryController::class, 'update'])
+    ->name('category.update');
+Route::get('/index/category', [CategoryController::class, 'index'])->name('index');
+Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
 // User / Employee 
 Route::get('/users',function(){
