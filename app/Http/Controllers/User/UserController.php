@@ -17,6 +17,7 @@ class UserController extends Controller
          $admins = User::where('role', 'Admin')->count();
          $managers = User::where('role', 'Manager')->count();
          $staff = User::where('role', 'User')->count();
+         $action = User::count();
          $recentUsers = User::latest()->take(3)->get();
          return view('admin.user.index', compact(
             'users',
@@ -24,6 +25,7 @@ class UserController extends Controller
             'admins',
             'managers',
             'staff',
+            'action',
             'recentUsers'
         ));
 

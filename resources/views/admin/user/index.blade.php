@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-2">{{ $adminCount ?? 5 }}</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2">{{ $admins }}</h3>
                     <p class="text-xs text-emerald-600 font-medium mt-1 flex items-center gap-1">↑ 25% from last month</p>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-2">{{ $staffCount ?? 19 }}</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2">{{ $staff }}</h3>
                     <p class="text-xs text-emerald-600 font-medium mt-1 flex items-center gap-1">↑ 5.6% from last month</p>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-2">{{ $activeCount ?? 21 }}</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2">{{ $action }}</h3>
                     <p class="text-xs text-emerald-600 font-medium mt-1 flex items-center gap-1">↑ 8.7% from last month</p>
                 </div>
             </div>
