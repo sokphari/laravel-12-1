@@ -158,34 +158,15 @@
 
             <!-- Pagination -->
             <div class="flex justify-between items-center px-6 py-5 border-t border-gray-500">
-
-                    <p class="text-sm text-slate-500">
-                        Showing 1-5 of 86 categories
-                    </p>
-
-                    <div class="flex gap-2">
-
-                        <button class="w-10 h-10 rounded-lg border hover:bg-slate-100">
-                            <
-                                </button>
-
-                                <button class="w-10 h-10 rounded-lg bg-blue-600 text-white">
-                                    1
-                                </button>
-
-                                <button class="w-10 h-10 rounded-lg border hover:bg-slate-100">
-                                    2
-                                </button>
-
-                                <button class="w-10 h-10 rounded-lg border hover:bg-slate-100">
-                                    3
-                                </button>
-
-                                <button class="w-10 h-10 rounded-lg border hover:bg-slate-100">
-                                    >
-                                </button>
-                    </div>
+                <p class="text-sm text-slate-500">Showing 1-5 of 86 categories</p>
+                <div class="flex gap-2">
+                    <button class="w-10 h-10 rounded-lg border hover:bg-slate-100"><</button>
+                    <button class="w-10 h-10 rounded-lg bg-blue-600 text-white">1</button>
+                    <button class="w-10 h-10 rounded-lg border hover:bg-slate-100">2</button>
+                    <button class="w-10 h-10 rounded-lg border hover:bg-slate-100">3</button>
+                    <button class="w-10 h-10 rounded-lg border hover:bg-slate-100">></button>
                 </div>
+            </div>
         </div>
     </div>
 

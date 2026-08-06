@@ -14,7 +14,7 @@
 
   <form class="space-y-5" action="{{ route('users.store') }}" method="POST">
     @csrf
-
+    
     <!-- User Name -->
     <div>
       <label for="userName" class="block text-sm font-semibold text-gray-700 mb-1">User Name</label>

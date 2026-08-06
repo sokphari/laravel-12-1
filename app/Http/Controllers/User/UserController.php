@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->paginate(10);
+        $users = User::orderBy('id')->paginate(10);
         return view('admin.user.index', compact('users'));
     }
 
@@ -23,6 +23,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
+            'id'=>['default'],
             'userName' => ['string', 'required'],
             'email' => ['string', 'required', 'email', 'unique:users'],
             'password' => ['string', 'required', 'min:8'],
