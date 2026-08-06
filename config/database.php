@@ -60,8 +60,8 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                \Pdo\Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'), // PHP 8.5
-                // PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'), // PHP 8.2
+                //\Pdo\Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'), // PHP 8.5
+                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'), // PHP 8.2
             ]) : [],
         ],
 
