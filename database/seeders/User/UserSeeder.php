@@ -14,19 +14,20 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {   
-        $users = User::created();
-        foreach($users as $user){
-            DB::table('users')->insert([
-                [
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'password' => Hash::make('11223344'), // Always hash passwords
-                    'role' => 'admin',
-                    'department' => 'IT',
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ],
-            ]);
-        }
+        // $users = User::created();
+        // foreach($users as $user){
+        //     DB::table('users')->insert([
+        //         [
+        //             'name' => $user->name,
+        //             'email' => $user->email,
+        //             'password' => Hash::make('11223344'), // Always hash passwords
+        //             'role' => 'admin',
+        //             'department' => 'IT',
+        //             'created_at' => now(),
+        //             'updated_at' => now(),
+        //         ],
+        //     ]);
+        // }
+        
     }
 }
