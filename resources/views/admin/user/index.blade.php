@@ -1,6 +1,6 @@
-@section('page-heading', 'Employees / Users')
-
 @extends('layouts.admin.app')
+
+@section('page-heading', 'Employees / Users')
 
 @section('content')
     <div class="max-w-7xl mx-auto px-4 py-8">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-2">24</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2">{{ $totalUsers ?? 24 }}</h3>
                     <p class="text-xs text-emerald-600 font-medium mt-1 flex items-center gap-1">↑ 4.2% from last month</p>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-2">5</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2">{{ $adminCount ?? 5 }}</h3>
                     <p class="text-xs text-emerald-600 font-medium mt-1 flex items-center gap-1">↑ 25% from last month</p>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-2">19</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2">{{ $staffCount ?? 19 }}</h3>
                     <p class="text-xs text-emerald-600 font-medium mt-1 flex items-center gap-1">↑ 5.6% from last month</p>
                 </div>
             </div>
@@ -67,14 +67,14 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-2">21</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2">{{ $activeCount ?? 21 }}</h3>
                     <p class="text-xs text-emerald-600 font-medium mt-1 flex items-center gap-1">↑ 8.7% from last month</p>
                 </div>
             </div>
         </div>
 
         <!-- Main User List Section -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-visible" x-data="{ openAddModal: false }">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-visible">
             <div class="p-4 border-b border-gray-100 flex justify-between items-center">
                 <h2 class="font-semibold text-gray-800 text-lg">User List</h2>
 
@@ -86,9 +86,8 @@
                         <option>All Statuses</option>
                     </select>
 
-                    <!-- Add User Button / Trigger -->
-                    <a href="{{ url('/users/create') }}"
-                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1.5 transition">
+                    <!-- Add User Button / Trigger (Updated to use standard resource route name) -->
+                    <a href="{{ route('users.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1.5 transition">
                         <span>+ Add User</span>
                     </a>
                 </div>
@@ -103,112 +102,100 @@
                         <th class="py-3 px-6">Role</th>
                         <th class="py-3 px-6">Department</th>
                         <th class="py-3 px-6">Status</th>
-                        <th class="py-3 px-6">Last Login</th>
                         <th class="py-3 px-6">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 text-sm">
-                    <tr class="text-gray-600 hover:bg-gray-50/50 transition">
-                        <td class="py-3 px-6">Al Nasser</td>
-                        <td class="py-3 px-6">alnasser@gmail.com</td>
-                        <td class="py-3 px-6">Admin</td>
-                        <td class="py-3 px-6">IT</td>
-                        <td class="py-3 px-6">
-                            <span class="px-2 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-full">
-                                Active
-                            </span>
-                        </td>
-                        <td class="py-3 px-6 text-gray-500 text-xs">
-                            20/02/2025 20:00
-                        </td>
+                    @forelse ($users as $user)
+                        <tr class="text-gray-600 hover:bg-gray-50/50 transition">
+                            <td class="py-3 px-6">{{ $user->name }}</td>
+                            <td class="py-3 px-6">{{ $user->email }}</td>
+                            <td class="py-3 px-6">{{ $user->role }}</td>
+                            <td class="py-3 px-6 text-gray-500 text-xs">
+                                {{ $user->department ?? 'N/A' }}
+                            </td>
+                            <td class="py-3 px-6">
+                                <span class="px-2 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-full">
+                                    {{ $user->status ?? 'Active' }}
+                                </span>
+                            </td>
 
-                        <td class="relative py-3 px-6 text-center" x-data="{ open: false }">
-                            <button type="button" @click.stop="open = !open"
-                                class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </button>
+                            <td class="relative py-3 px-6 text-center" x-data="{ open: false }">
+                                <button type="button" @click.stop="open = !open"
+                                    class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
 
-                            <div x-show="open" x-transition.origin.top.right @click.outside="open = false" x-cloak
-                                class="absolute right-6 top-11 z-50 w-36 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-xl">
-                                <a href="{{ url('/users/1/edit') }}"
-                                    class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
-                                    <i class="fa-solid fa-pen-to-square w-4 text-center"></i>
-                                    <span>Edit</span>
-                                </a>
+                                <div x-show="open" x-transition.origin.top.right @click.outside="open = false" x-cloak
+                                    class="absolute right-6 top-11 z-50 w-36 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-xl">
+                                    <a href="{{ route('users.edit', $user->id) }}"
+                                        class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                                        <i class="fa-solid fa-pen-to-square w-4 text-center"></i>
+                                        <span>Edit</span>
+                                    </a>
 
-                                <form action="{{ url('/users/1') }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
 
-                                    <button type="submit"
-                                        onclick="return confirm('Are you sure you want to delete this user?')"
-                                        class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-red-600 hover:bg-red-50 transition">
-                                        <i class="fa-solid fa-trash-can w-4 text-center"></i>
-                                        <span>Delete</span>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
+                                        <button type="submit"
+                                            onclick="return confirm('Are you sure you want to delete this user?')"
+                                            class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-red-600 hover:bg-red-50 transition">
+                                            <i class="fa-solid fa-trash-can w-4 text-center"></i>
+                                            <span>Delete</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="py-6 text-center text-gray-400 text-sm">No users found.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
 
-            <!-- Table Footer -->
-            <div class="p-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-500">
-                <span>Showing 1 to 7 of 24 users</span>
-                <div class="flex items-center gap-1">
-                    <button class="px-2.5 py-1 rounded border border-gray-200 hover:bg-gray-50">&lt;</button>
-                    <button class="px-2.5 py-1 rounded bg-blue-600 text-white font-medium">1</button>
-                    <button class="px-2.5 py-1 rounded border border-gray-200 hover:bg-gray-50">2</button>
-                    <button class="px-2.5 py-1 rounded border border-gray-200 hover:bg-gray-50">3</button>
-                    <button class="px-2.5 py-1 rounded border border-gray-200 hover:bg-gray-50">4</button>
-                    <button class="px-2.5 py-1 rounded border border-gray-200 hover:bg-gray-50">&gt;</button>
+            <!-- Pagination -->
+            <div class="flex justify-between items-center px-6 py-5 border-t border-gray-500">
+
+                    <p class="text-sm text-slate-500">
+                        Showing 1-5 of 86 categories
+                    </p>
+
+                    <div class="flex gap-2">
+
+                        <button class="w-10 h-10 rounded-lg border hover:bg-slate-100">
+                            <
+                                </button>
+
+                                <button class="w-10 h-10 rounded-lg bg-blue-600 text-white">
+                                    1
+                                </button>
+
+                                <button class="w-10 h-10 rounded-lg border hover:bg-slate-100">
+                                    2
+                                </button>
+
+                                <button class="w-10 h-10 rounded-lg border hover:bg-slate-100">
+                                    3
+                                </button>
+
+                                <button class="w-10 h-10 rounded-lg border hover:bg-slate-100">
+                                    >
+                                </button>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 
-    <!-- MODAL POPUP -->
-    <div x-data="{ openAddModal: false }" x-show="openAddModal"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" x-cloak>
-        <div @click.away="openAddModal = false"
-            class="bg-white rounded-2xl shadow-xl w-full max-w-lg mx-4 overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
-                <h3 class="font-bold text-lg text-gray-900">Add New User</h3>
-                <button @click="openAddModal = false" class="text-gray-400 hover:text-gray-600">&times;</button>
-            </div>
-
-            <div class="p-6 space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Full Name</label>
-                    <input type="text" class="w-full rounded-lg border-gray-200 border px-3 py-2 text-sm outline-none"
-                        value="Alex Johnson">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Email Address</label>
-                    <input type="email" class="w-full rounded-lg border-gray-200 border px-3 py-2 text-sm outline-none"
-                        value="alex.j@example.com">
-                </div>
-                <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
-                    <button type="button" @click="openAddModal = false"
-                        class="px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100">Cancel</button>
-                    <button type="button" @click="openAddModal = false"
-                        class="px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white shadow-sm">Save
-                        User</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="max-w-7xl mx-auto">
-        <!-- Header -->
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-2">
+    <!-- Analytics & Recent Users Section -->
+    <div class="max-w-7xl mx-auto px-4 mt-6">
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
             <!-- Role Distribution -->
-            <div
-                class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition duration-300">
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition duration-300">
                 <div class="flex items-center justify-between px-6 py-5 border-b ">
-                    <h2 class="text-lg font-semibold text-black">
-                        Role Distribution
-                    </h2>
+                    <h2 class="text-lg font-semibold text-black"> Role Distribution</h2>
                 </div>
 
                 <div class="p-6 flex flex-col lg:flex-row items-center gap-10">
@@ -216,25 +203,18 @@
                         <canvas id="roleChart"></canvas>
 
                         <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                            <h3 class="text-4xl font-bold text-gray-800">
-                                24
-                            </h3>
-                            <p class="text-gray-500 text-sm">
-                                Total Users
-                            </p>
+                            <h3 class="text-4xl font-bold text-gray-800">24</h3>
+                            <p class="text-gray-500 text-sm">Total Users</p>
                         </div>
                     </div>
 
                     <div class="flex-1 space-y-6 w-full">
-
                         <div class="flex items-center justify-between bg-blue-50 rounded-xl px-4 py-3">
                             <div class="flex items-center gap-3">
                                 <span class="w-4 h-4 rounded-full bg-blue-500"></span>
                                 <span class="font-medium text-gray-700">Admin</span>
                             </div>
-                            <span class="font-bold text-blue-600">
-                                5 (20.8%)
-                            </span>
+                            <span class="font-bold text-blue-600">5 (20.8%)</span>
                         </div>
 
                         <div class="flex items-center justify-between bg-purple-50 rounded-xl px-4 py-3">
@@ -242,35 +222,25 @@
                                 <span class="w-4 h-4 rounded-full bg-purple-500"></span>
                                 <span class="font-medium text-gray-700">Manager</span>
                             </div>
-                            <span class="font-bold text-purple-600">
-                                5 (20.8%)
-                            </span>
+                            <span class="font-bold text-purple-600">5 (20.8%)</span>
                         </div>
                         <div class="flex items-center justify-between bg-green-50 rounded-xl px-4 py-3">
                             <div class="flex items-center gap-3">
                                 <span class="w-4 h-4 rounded-full bg-green-500"></span>
                                 <span class="font-medium text-gray-700">Staff</span>
                             </div>
-                            <span class="font-bold text-green-600">
-                                14 (58.4%)
-                            </span>
+                            <span class="font-bold text-green-600">14 (58.4%)</span>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
             <!-- Recently Added Users -->
-            <div
-                class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition duration-300">
-
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition duration-300">
                 <div class="flex items-center justify-between px-6 py-5 border-b">
-                    <h2 class="text-lg font-semibold text-black">
-                        Recently Added Users
-                    </h2>
-                    <button
-                        class="bg-white text-emerald-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100 transition">
-                        View All
-                    </button>
+                    <h2 class="text-lg font-semibold text-black">Recently Added Users</h2>
+                    <button class="bg-white text-emerald-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100 transition">View All</button>
                 </div>
 
                 <div class="divide-y">
@@ -278,65 +248,43 @@
                     <!-- User 1 -->
                     <div class="flex items-center justify-between p-2 hover:bg-gray-50 transition">
                         <div class="flex items-center gap-4">
-                            <img src="https://i.pravatar.cc/45?img=11" alt="Olivia"
-                                class="w-12 h-12 rounded-full ring-2 ring-green-300">
+                            <img src="https://i.pravatar.cc/45?img=11" alt="Olivia" class="w-12 h-12 rounded-full ring-2 ring-green-300">
                             <div class=" flex gap-11">
-                                <h4 class="font-semibold text-gray-800">
-                                    Olivia Thomas
-                                </h4>
-                                <p class="text-sm text-gray-500">
-                                    olivia@example.com
-                                </p>
+                                <h4 class="font-semibold text-gray-800">Olivia Thomas</h4>
+                                <p class="text-sm text-gray-500">olivia@example.com</p>
                             </div>
                         </div>
                         <div class="text-right">
-                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                Staff
-                            </span>
-                            <p class="text-sm text-gray-500 mt-2">
-                                May 20, 2025
-                            </p>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold"> Staff</span>
+                            <p class="text-sm text-gray-500 mt-2">May 20, 2025</p>
                         </div>
                     </div>
 
                     <!-- User 2 -->
                     <div class="flex items-center justify-between p-2 hover:bg-gray-50 transition">
                         <div class="flex items-center gap-4">
-                            <img src="https://i.pravatar.cc/45?img=15" alt="Daniel"
-                                class="w-12 h-12 rounded-full ring-2 ring-purple-300">
+                            <img src="https://i.pravatar.cc/45?img=15" alt="Daniel" class="w-12 h-12 rounded-full ring-2 ring-purple-300">
                             <div class="flex gap-7">
-                                <h4 class="font-semibold text-gray-800">
-                                    Daniel Anderson
-                                </h4>
-                                <p class="text-sm text-gray-500">
-                                    daniel@example.com
-                                </p>
+                                <h4 class="font-semibold text-gray-800">Daniel Anderson</h4>
+                                <p class="text-sm text-gray-500">daniel@example.com</p>
                             </div>
                         </div>
                         <div class="text-right">
-                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                Manager
-                            </span>
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">Manager</span>
                             <p class="text-sm text-gray-500 mt-2">May 19, 2025</p>
                         </div>
                     </div>
                     <!-- User 3 -->
                     <div class="flex items-center justify-between p-2 hover:bg-gray-50 transition">
                         <div class="flex items-center gap-4">
-                            <img src="https://i.pravatar.cc/45?img=22" alt="Sophia"
-                                class="w-12 h-12 rounded-full ring-2 ring-blue-300">
+                            <img src="https://i.pravatar.cc/45?img=22" alt="Sophia" class="w-12 h-12 rounded-full ring-2 ring-blue-300">
                             <div class="flex gap-13">
                                 <h4 class="font-semibold text-gray-800">Sophia Taylor</h4>
                                 <p class="text-sm text-gray-500">sophia@example.com</p>
                             </div>
                         </div>
-                        <div class="text-right">
-                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                Admin
-                            </span>
-                            <p class="text-sm text-gray-500 mt-2">
-                                May 18, 2025
-                            </p>
+                        <div class="text-right"> Admin</span>
+                            <p class="text-sm text-gray-500 mt-2"> May 18, 2025</p>
                         </div>
                     </div>
                 </div>
@@ -347,33 +295,12 @@
     <!-- Chart.js Script -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        function toggleMenu(button) {
-            // Close all other menus
-            document.querySelectorAll(".action-menu").forEach(menu => {
-                if (menu !== button.nextElementSibling) {
-                    menu.classList.add("hidden");
-                }
-            });
-
-            // Toggle current menu
-            button.nextElementSibling.classList.toggle("hidden");
-        }
-
-        // Close when clicking outside
-        document.addEventListener("click", function(e) {
-            if (!e.target.closest("td")) {
-                document.querySelectorAll(".action-menu").forEach(menu => {
-                    menu.classList.add("hidden");
-                });
-            }
-        });
         document.addEventListener("DOMContentLoaded", function() {
             const ctx = document.getElementById('roleChart').getContext('2d');
 
-            // Hardcoded static data for the frontend display
-            const adminCount = 5;
-            const managerCount = 5;
-            const staffCount = 14;
+            const adminCount = {{ $adminCount ?? 5 }};
+            const managerCount = {{ $managerCount ?? 5 }};
+            const staffCount = {{ $staffCount ?? 14 }};
 
             new Chart(ctx, {
                 type: 'doughnut',
@@ -384,7 +311,7 @@
                         backgroundColor: [
                             '#3B82F6', // Blue-500
                             '#A855F7', // Purple-500
-                            '#22C55E' // Green-500
+                            '#22C55E'  // Green-500
                         ],
                         borderWidth: 0,
                         hoverOffset: 4
@@ -393,10 +320,10 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    cutout: '75%', // Creates the hollow center
+                    cutout: '75%',
                     plugins: {
                         legend: {
-                            display: false // Hidden since the HTML handles the custom legend
+                            display: false
                         },
                         tooltip: {
                             enabled: true,

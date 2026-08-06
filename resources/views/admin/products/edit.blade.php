@@ -4,171 +4,150 @@
 @section('page-heading', 'Product')
 
 @section('content')
-<div class="bg-slate-50 min-h-screen p-6">
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto">
+    <div class="  p-8">
 
-        <!-- Header -->
-        <div class="flex items-center justify-between mb-6">
-            <div>
-                <h2 class="text-2xl font-bold text-slate-900">
-                    Edit Product
+        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+
+            <!-- Header -->
+            <div class="border-b px-8 py-6">
+                <h2 class="text-3xl font-bold text-slate-800">
+                    Create Product
                 </h2>
-                <p class="text-sm text-slate-500">
-                    Fill in the product details and upload an image to your inventory.
+                <p class="text-gray-500 mt-2">
+                    Fill in the information below to create a new product.
                 </p>
             </div>
 
-            <a href="{{ route('admin.products.index') }}"
-                class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition">
-
-                <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                Back
-            </a>
-        </div>
-
-        <!-- Card -->
-        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
-
-            <form action="" method="POST" enctype="multipart/form-data" class="p-8 space-y-6">
+            <form action="{{ route('update.products', $products->id) }}" method="POST">
                 @csrf
+                @method('PUT')
 
-                <!-- Product Name & Brand -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="p-8 space-y-8">
 
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-slate-700 mb-2">
-                            Product Name
-                        </label>
+                    <!-- Row 1 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Wireless Headphones"
-                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500">
+                        <!-- Product Name -->
+                        <div>
+                            <label class="block mb-2 font-semibold text-gray-700">
+                                Product Name
+                            </label>
+
+                            <input type="text" name="name" value="{{ old('name', $products->name) }}"
+                                placeholder="Enter product name"
+                                class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+
+                            @error('name')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Category -->
+                        <div>
+                            <label class="block mb-2 font-semibold text-gray-700">
+                                Category
+                            </label>
+
+                            <select name="category_id"
+                                class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+
+                                <option value="">Select Category</option>
+
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id', $products->category_id) == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+
+                            </select>
+
+                            @error('category_id')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
                     </div>
 
+                    <!-- Row 2 -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                        <!-- Quantity -->
+                        <div>
+                            <label class="block mb-2 font-semibold text-gray-700">
+                                Quantity
+                            </label>
+
+                            <input type="number" name="quantity" value="{{ old('quantity', $products->quantity) }}"
+                                placeholder="0"
+                                class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+
+                            @error('quantity')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Price -->
+                        <div>
+                            <label class="block mb-2 font-semibold text-gray-700">
+                                Price
+                            </label>
+
+                            <input type="number" step="0.01" name="price" value="{{ old('price', $products->price) }}"
+                                placeholder="$0.00"
+                                class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+
+                            @error('price')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Stock -->
+                        <div>
+                            <label class="block mb-2 font-semibold text-gray-700">
+                                Stock
+                            </label>
+
+                            <input type="number" name="stock" value="{{ old('stock', $products->stock) }}"
+                                placeholder="0"
+                                class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+
+                            @error('stock')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                    </div>
+
+                    <!-- Description -->
                     <div>
-                        <label class="block text-xs font-semibold uppercase text-slate-700 mb-2">
-                            Brand / Vendor
+                        <label class="block mb-2 font-semibold text-gray-700">
+                            Description
                         </label>
 
-                        <input
-                            type="text"
-                            name="brand"
-                            placeholder="Sony"
-                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500">
+                        <textarea name="description" rows="6" placeholder="Enter product description..."
+                            class="w-full rounded-xl border border-gray-300 px-4 py-3 resize-none focus:ring-2 focus:ring-blue-500 focus:outline-none" 
+                           >{{ old('description', $products->description) }}
+                            </textarea>
+
+                        @error('description')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                 </div>
 
-                <!-- SKU & Category -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-slate-700 mb-2">
-                            SKU Code
-                        </label>
-
-                        <input
-                            type="text"
-                            name="sku"
-                            placeholder="WH-1000XM5"
-                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-slate-700 mb-2">
-                            Category
-                        </label>
-
-                        <select
-                            name="category"
-                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl">
-
-                            <option disabled selected>Select Category</option>
-                            <option>Electronics</option>
-                            <option>Furniture</option>
-                            <option>Stationery</option>
-                            <option>Accessories</option>
-                            <option>Home & Office</option>
-
-                        </select>
-                    </div>
-
-                </div>
-
-                <!-- Quantity Price Status -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-slate-700 mb-2">
-                            Quantity
-                        </label>
-
-                        <input
-                            type="number"
-                            name="qty"
-                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-slate-700 mb-2">
-                            Price ($)
-                        </label>
-
-                        <input
-                            type="number"
-                            step="0.01"
-                            name="price"
-                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-slate-700 mb-2">
-                            Stock Status
-                        </label>
-
-                        <select
-                            name="status"
-                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl">
-
-                            <option value="in-stock">In Stock</option>
-                            <option value="low-stock">Low Stock</option>
-                            <option value="out-stock">Out of Stock</option>
-
-                        </select>
-                    </div>
-
-                </div>
-
-                <!-- Product Image -->
-                <div>
-
-                    <label class="block text-xs font-semibold uppercase text-slate-700 mb-2">
-                        Product Image
-                    </label>
-
-                    <input
-                        type="file"
-                        name="image"
-                        class="w-full border border-slate-200 rounded-xl p-3">
-
-                </div>
-
-                <!-- Buttons -->
-                <div class="flex justify-end gap-3 pt-5 border-t">
+                <!-- Footer -->
+                <div class="border-t px-8 py-6 flex justify-end gap-4">
 
                     <a href="{{ route('admin.products.index') }}"
-                        class="px-6 py-3 border border-slate-200 rounded-xl hover:bg-slate-50">
+                        class="px-6 py-3 rounded-xl bg-gray-500 text-white hover:bg-gray-600 transition">
                         Cancel
                     </a>
 
-                    <button
-                        type="submit"
-                        class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl">
-                        Save Product
+                    <button type="submit" class="px-8 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition">
+                        Create Product
                     </button>
 
                 </div>
@@ -177,13 +156,6 @@
 
         </div>
 
-    </main>
+    </div>
 
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        lucide.createIcons();
-    });
-</script>
 @endsection

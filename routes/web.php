@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Product\ProductController;
 
 /*
@@ -45,14 +45,18 @@ Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])-
 Route::post('/products',[ProductController::class,'store'])->name('admin.products.store');
 Route::get('/products/create',[ProductController::class,'create'])->name('insert.products');
 Route::get('/products/index',[ProductController::class,'index'])->name('admin.products.index');
+Route::get('/products/{id}',[ProductController::class,'edit'])->name('edit.products');
+Route::put('/products/update/{id}',[ProductController::class,'update'])->name('update.products');
+Route::delete('/products/delete/{id}',[ProductController::class,'destroy'])->name('delete.products');
 // User / Employee 
-Route::get('/users', function () {
-    return view('admin.user.index');
-});
-Route::get('/users/create', function () {
-    return view('admin.user.insert');
-});
-Route::get('/dashboard', function () {
+Route::get('/users/index', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{id}/update', [UserController::class, 'update'])->name('users.update'); // Fixed to PUT and added ID/update URI
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy'); // Fixed method to DELETE
+
+Route::get('/dashboard', function(){
     return view('admin.overview.overview');
 });
 

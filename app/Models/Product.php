@@ -15,8 +15,8 @@ class Product extends Model
         'quantity',
         'price',
         'description',
-        // 'image',
-        // 'stock'
+        'image',
+        'stock'
     ];
     // Many to one
     public function category(){
