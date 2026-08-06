@@ -175,10 +175,8 @@
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
             <!-- Role Distribution -->
             <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition duration-300">
-                <div class="flex items-center justify-between px-6 py-5 border-b">
-                    <h2 class="text-lg font-semibold text-black">
-                        Role Distribution
-                    </h2>
+                <div class="flex items-center justify-between px-6 py-5 border-b ">
+                    <h2 class="text-lg font-semibold text-black"> Role Distribution</h2>
                 </div>
 
                 <div class="p-6 flex flex-col lg:flex-row items-center gap-10">
@@ -186,12 +184,8 @@
                         <canvas id="roleChart"></canvas>
 
                         <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                            <h3 class="text-4xl font-bold text-gray-800">
-                                {{ $totalUsers ?? 24 }}
-                            </h3>
-                            <p class="text-gray-500 text-sm">
-                                Total Users
-                            </p>
+                            <h3 class="text-4xl font-bold text-gray-800">24</h3>
+                            <p class="text-gray-500 text-sm">Total Users</p>
                         </div>
                     </div>
 
@@ -201,9 +195,7 @@
                                 <span class="w-4 h-4 rounded-full bg-blue-500"></span>
                                 <span class="font-medium text-gray-700">Admin</span>
                             </div>
-                            <span class="font-bold text-blue-600">
-                                {{ $adminCount ?? 5 }} ({{ round((($adminCount ?? 5) / max(($totalUsers ?? 24), 1)) * 100, 1) }}%)
-                            </span>
+                            <span class="font-bold text-blue-600">5 (20.8%)</span>
                         </div>
 
                         <div class="flex items-center justify-between bg-purple-50 rounded-xl px-4 py-3">
@@ -211,18 +203,14 @@
                                 <span class="w-4 h-4 rounded-full bg-purple-500"></span>
                                 <span class="font-medium text-gray-700">Manager</span>
                             </div>
-                            <span class="font-bold text-purple-600">
-                                {{ $managerCount ?? 5 }} ({{ round((($managerCount ?? 5) / max(($totalUsers ?? 24), 1)) * 100, 1) }}%)
-                            </span>
+                            <span class="font-bold text-purple-600">5 (20.8%)</span>
                         </div>
                         <div class="flex items-center justify-between bg-green-50 rounded-xl px-4 py-3">
                             <div class="flex items-center gap-3">
                                 <span class="w-4 h-4 rounded-full bg-green-500"></span>
                                 <span class="font-medium text-gray-700">Staff</span>
                             </div>
-                            <span class="font-bold text-green-600">
-                                {{ $staffCount ?? 14 }} ({{ round((($staffCount ?? 14) / max(($totalUsers ?? 24), 1)) * 100, 1) }}%)
-                            </span>
+                            <span class="font-bold text-green-600">14 (58.4%)</span>
                         </div>
                     </div>
                     
@@ -232,53 +220,54 @@
             <!-- Recently Added Users -->
             <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition duration-300">
                 <div class="flex items-center justify-between px-6 py-5 border-b">
-                    <h2 class="text-lg font-semibold text-black">
-                        Recently Added Users
-                    </h2>
-                    <button class="text-white bg-blue-500 border hover:bg-blue-700 px-2 py-2 rounded-xl">View All</button>
+                    <h2 class="text-lg font-semibold text-black">Recently Added Users</h2>
+                    <button class="bg-white text-emerald-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100 transition">View All</button>
                 </div>
 
-                <div class="divide-y p-2">
-                    @forelse ($recentUsers ?? [] as $recentUser)
-                        <div class="flex items-center justify-between p-3 hover:bg-gray-50 transition">
-                            <div class="flex items-center gap-4">
-                                <img src="https://i.pravatar.cc/45?u={{ $recentUser->id }}" alt="{{ $recentUser->name }}"
-                                    class="w-12 h-12 rounded-full ring-2 ring-green-300 object-cover">
-                                <div>
-                                    <h4 class="font-semibold text-gray-800">
-                                        {{ $recentUser->name }}
-                                    </h4>
-                                    <p class="text-sm text-gray-500">
-                                        {{ $recentUser->email }}
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                    {{ $recentUser->role }}
-                                </span>
-                                <p class="text-sm text-gray-500 mt-2">
-                                    {{ $recentUser->created_at->format('M d, Y') }}
-                                </p>
+                <div class="divide-y">
+
+                    <!-- User 1 -->
+                    <div class="flex items-center justify-between p-2 hover:bg-gray-50 transition">
+                        <div class="flex items-center gap-4">
+                            <img src="https://i.pravatar.cc/45?img=11" alt="Olivia" class="w-12 h-12 rounded-full ring-2 ring-green-300">
+                            <div class=" flex gap-11">
+                                <h4 class="font-semibold text-gray-800">Olivia Thomas</h4>
+                                <p class="text-sm text-gray-500">olivia@example.com</p>
                             </div>
                         </div>
-                    @empty
-                        <!-- Fallback static view if $recentUsers is not passed -->
-                        <div class="flex items-center justify-between p-3 hover:bg-gray-50 transition">
-                            <div class="flex items-center gap-4">
-                                <img src="https://i.pravatar.cc/45?img=11" alt="Olivia"
-                                    class="w-12 h-12 rounded-full ring-2 ring-green-300">
-                                <div>
-                                    <h4 class="font-semibold text-gray-800">Olivia Thomas</h4>
-                                    <p class="text-sm text-gray-500">olivia@example.com</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">Staff</span>
-                                <p class="text-sm text-gray-500 mt-2">May 20, 2025</p>
+                        <div class="text-right">
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold"> Staff</span>
+                            <p class="text-sm text-gray-500 mt-2">May 20, 2025</p>
+                        </div>
+                    </div>
+
+                    <!-- User 2 -->
+                    <div class="flex items-center justify-between p-2 hover:bg-gray-50 transition">
+                        <div class="flex items-center gap-4">
+                            <img src="https://i.pravatar.cc/45?img=15" alt="Daniel" class="w-12 h-12 rounded-full ring-2 ring-purple-300">
+                            <div class="flex gap-7">
+                                <h4 class="font-semibold text-gray-800">Daniel Anderson</h4>
+                                <p class="text-sm text-gray-500">daniel@example.com</p>
                             </div>
                         </div>
-                    @endforelse
+                        <div class="text-right">
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">Manager</span>
+                            <p class="text-sm text-gray-500 mt-2">May 19, 2025</p>
+                        </div>
+                    </div>
+                    <!-- User 3 -->
+                    <div class="flex items-center justify-between p-2 hover:bg-gray-50 transition">
+                        <div class="flex items-center gap-4">
+                            <img src="https://i.pravatar.cc/45?img=22" alt="Sophia" class="w-12 h-12 rounded-full ring-2 ring-blue-300">
+                            <div class="flex gap-13">
+                                <h4 class="font-semibold text-gray-800">Sophia Taylor</h4>
+                                <p class="text-sm text-gray-500">sophia@example.com</p>
+                            </div>
+                        </div>
+                        <div class="text-right"> Admin</span>
+                            <p class="text-sm text-gray-500 mt-2"> May 18, 2025</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
