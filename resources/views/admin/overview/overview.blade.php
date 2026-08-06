@@ -305,9 +305,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
                     User List
                 </h2>
 
-                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg">
+                <a href="{{ url('/users/create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg">
                     Add User
-                </button>
+                </a>
 
             </div>
 

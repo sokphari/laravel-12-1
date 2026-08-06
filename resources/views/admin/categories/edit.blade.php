@@ -1,7 +1,7 @@
 @extends('layouts.admin.app')
 
 @section('title', 'Categories')
-@section('page-heading', 'Create Categories')
+@section('page-heading', 'Edit Categories')
 
 @section('content')
 
@@ -11,16 +11,27 @@
         <!-- Header -->
         <div class="px-8 py-6 border-b border-slate-200">
             <h2 class="text-2xl font-bold text-slate-800">
-                Create Category
+                Edit Category
             </h2>
             <p class="text-slate-500 mt-1">
                 Fill in the information below to create a new category.
             </p>
         </div>
+        @if ($errors->any())
+    <div class="bg-red-100 text-red-700 px-4 py-3 rounded-xl mb-4">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
         <!-- Form -->
-        <form action="{{ route('category.store') }}" method="POST" class="p-8">
+        <form action="{{ route('category.update', $category->id) }}" method="POST" class="p-8">
             @csrf
+            @method('PUT')
+            
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
@@ -32,7 +43,19 @@
                     <input
                         type="text"
                         name="name"
+                        value="{{ old('name', $category->name) }}"
                         placeholder="Enter category name"
+                        class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-semibold text-slate-700">
+                        Category ID
+                    </label>
+                    <input
+                        type="text"
+                        disabled
+                        name="id"
+                        value="{{ old('id', $category->id) }}"
                         class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
                 </div>
 
@@ -57,9 +80,9 @@
                     <select
                         name="status"
                         class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
-                        <option>Select Status</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
+                        <option value="">Select Status</option>
+                        <option value="active" {{ old('status', $category->status) === 'active' ? 'selected' : '' }}>Active</option>
+                        <option value="inactive" {{ old('status', $category->status) === 'inactive' ? 'selected' : '' }}>Inactive</option>
                     </select>
                 </div>
 
@@ -76,7 +99,7 @@
                         name="description"
                         rows="6"
                         placeholder="Enter category description..."
-                        class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none"></textarea>
+                        class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none">{{ old('description', $category->description) }}</textarea>
                 </div>
 
             </div>
@@ -86,15 +109,20 @@
 
                 <a href="{{ route('index') }}"
                     class="bg-gray-500 hover:bg-gray-700 text-white px-5 py-2 rounded-xl inline-flex items-center">
-                   
+                    
                     Cancel
                 </a>
 
                 <button
                     type="submit"
                     class="px-6 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700">
-                    Create Category
+                    Save Changes
                 </button>
+                @if (session('success'))
+    <div class="bg-green-100 text-green-700 px-4 py-3 rounded-xl mb-4">
+        {{ session('success') }}
+    </div>
+@endif
 
             </div>
 
