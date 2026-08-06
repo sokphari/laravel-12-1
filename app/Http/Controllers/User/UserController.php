@@ -12,7 +12,21 @@ class UserController extends Controller
     public function index()
     {
         $users = User::latest()->paginate(10);
-        return view('admin.user.index', compact('users'));
+        // Role Distribution
+         $totalUsers = User::count();
+         $admins = User::where('role', 'Admin')->count();
+         $managers = User::where('role', 'Manager')->count();
+         $staff = User::where('role', 'Staff')->count();
+        // Recently Added Users
+         $recentUsers = User::latest()->take(3)->get();
+         return view('admin.user.index', compact(
+            'users',
+            'totalUsers',
+            'admins',
+            'managers',
+            'staff'
+        ));
+
     }
 
     public function create()
