@@ -45,6 +45,9 @@ Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])-
 Route::post('/products',[ProductController::class,'store'])->name('admin.products.store');
 Route::get('/products/create',[ProductController::class,'create'])->name('insert.products');
 Route::get('/products/index',[ProductController::class,'index'])->name('admin.products.index');
+Route::get('/products/{id}',[ProductController::class,'edit'])->name('edit.products');
+Route::put('/products/update/{id}',[ProductController::class,'update'])->name('update.products');
+Route::delete('/products/delete/{id}',[ProductController::class,'destroy'])->name('delete.products');
 // User / Employee 
 Route::get('/users', function () {
     return view('admin.user.index');

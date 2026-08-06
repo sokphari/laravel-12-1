@@ -98,7 +98,7 @@
                         <td class="py-3 pr-4 text-slate-500">{{$prd->description}}</td>
                         <td class="py-3 pr-4 text-slate-500">{{$prd->sku}}</td>
                         <td class="py-3 pr-4">
-                            <span class="px-2.5 py-1 rounded-md text-xs font-semibold ${catClass}">Electronics</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-semibold ${catClass}">{{$prd->category_id}}</span>
                         </td>
                         <td class="py-3 pr-4 text-slate-700">{{$prd->quantity}}</td>
                         <td class="py-3 pr-4 text-slate-700">{{$prd->price}}</td>
@@ -113,18 +113,18 @@
 
                             <div x-show="open" x-transition.origin.top.right @click.outside="open = false" x-cloak
                                 class="absolute right-6 top-11 z-50 w-36 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-xl">
-                                <a href="{{ url('/users/1/edit') }}"
+                                <a href="{{ route('edit.products', $prd->id) }}"
                                     class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
                                     <i class="fa-solid fa-pen-to-square w-4 text-center"></i>
                                     <span>Edit</span>
                                 </a>
 
-                                <form action="{{ url('/users/1') }}" method="POST">
+                                <form action="{{ route('delete.products', $prd->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
                                     <button type="submit"
-                                        onclick="return confirm('Are you sure you want to delete this user?')"
+                                        onclick="return confirm('Are you sure you want to delete this product?')"
                                         class="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-red-600 hover:bg-red-50 transition">
                                         <i class="fa-solid fa-trash-can w-4 text-center"></i>
                                         <span>Delete</span>
