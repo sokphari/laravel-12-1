@@ -48,21 +48,27 @@ Route::get('/products/index',[ProductController::class,'index'])->name('admin.pr
 Route::get('/products/{id}',[ProductController::class,'edit'])->name('edit.products');
 Route::put('/products/update/{id}',[ProductController::class,'update'])->name('update.products');
 Route::delete('/products/delete/{id}',[ProductController::class,'destroy'])->name('delete.products');
-// User / Employee 
-Route::get('/users/index', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
-Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{id}/update', [UserController::class, 'update'])->name('users.update'); // Fixed to PUT and added ID/update URI
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy'); // Fixed method to DELETE
 
-Route::get('/dashboard', function(){
-    return view('admin.overview.overview');
+
+Route::middleware(['auth'])->group(function(){
+    
+    // User / Employee 
+    Route::get('/users/index', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}/update', [UserController::class, 'update'])->name('users.update'); // Fixed to PUT and added ID/update URI
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy'); // Fixed method to DELETE
+    
+    Route::get('/dashboard', function(){
+        return view('admin.overview.overview');
+    })->name('dashboard');
+    
+    Route::get('/employees', function () {
+        return view('admin.Employee.index');
+    })->name('admin.employees.index');
+    
 });
-
-Route::get('/employees', function () {
-    return view('admin.Employee.index');
-})->name('admin.employees.index');
 
 
 
@@ -76,3 +82,11 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
+
+
+
+
+// frontend 
+Route::get('/client',function(){
+    return 'IT Tea Tik Kok ☕';
+});
