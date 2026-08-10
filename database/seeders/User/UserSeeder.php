@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
                 'name'       => 'Manage',
                 'email'      => 'manage@gmail.com',
                 'password'   => Hash::make('password'),
-                'role'       => 'manage',
+                'role'       => 'manager',
                 'department' => 'HR',
                 'created_at' => now(),
                 'updated_at' => now(),

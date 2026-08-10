@@ -76,7 +76,7 @@ Route::middleware(['auth','role_user:admin','throttle:3,1'])->group(function(){
 
 // Login page shows first
 Route::get('', [AuthController::class, 'loginForm'])->name('login');
-Route::post('/login/', [AuthController::class, 'storeLogin'])->name('login.store');
+Route::post('/login', [AuthController::class, 'storeLogin'])->name('login.store');
 
 // Register page
 Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
