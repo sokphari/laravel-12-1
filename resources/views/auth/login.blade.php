@@ -248,14 +248,19 @@
         <h1 class="login-title">Sign in to your account</h1>
         <p class="login-subtitle">Enter your credentials to continue</p>
 
-        <form onsubmit="loginPage(event)">
+        <form method="POST" action="{{ route('login.store') }}">
+            @csrf
+
             {{-- Email --}}
             <label class="form-label">Email Address</label>
             <div class="input-group">
                 <span class="input-group-text">
                     <i class="bi bi-envelope"></i>
                 </span>
-                <input type="email" class="form-control" placeholder="you@example.com" required>
+                <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="you@example.com" required autofocus>
+                @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Password --}}
@@ -264,7 +269,7 @@
                 <span class="input-group-text">
                     <i class="bi bi-lock"></i>
                 </span>
-                <input type="password" id="password" class="form-control password-input" placeholder="Enter your password" required>
+                <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror password-input" placeholder="Enter your password" required>
                 <button type="button" class="btn show-password" onclick="showPassword()">
                     <i class="bi bi-eye" id="eyeIcon"></i>
                 </button>
@@ -298,11 +303,6 @@
 </div>
 
 <script>
-    function loginPage(event) {
-        event.preventDefault();
-        alert("Login successful!");
-    }
-
     function showPassword() {
         let password = document.getElementById("password");
         let eyeIcon = document.getElementById("eyeIcon");

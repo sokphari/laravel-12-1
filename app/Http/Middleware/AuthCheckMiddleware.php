@@ -14,18 +14,17 @@ class AuthCheckMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next , string ...$role): Response
+    public function handle(Request $request, Closure $next, string ...$role): Response
     {
-        if(!Auth()->check()){
-            return redirect('login');
+        if (!Auth::check()) {
+            return redirect()->route('login');
         }
-        if(!in_array(Auth::user()->role,$role)){
-            abort(403,"you don't permission to access route this");
+
+        if (!empty($role) && !in_array(Auth::user()->role, $role)) {
+            abort(403, "You don't have permission to access this route");
         }
 
         return $next($request);
-    
-        
     }
 }
 

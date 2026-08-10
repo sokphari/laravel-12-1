@@ -212,14 +212,19 @@
         <h1 class="register-title">Create your account</h1>
         <p class="register-subtitle">Enter your information to create an account</p>
 
-        <form onsubmit="registerPage(event)">
+        <form method="POST" action="{{ route('register.store') }}">
+            @csrf
+
             {{-- Full Name --}}
             <label class="form-label">Full Name</label>
             <div class="input-group">
                 <span class="input-group-text">
                     <i class="bi bi-person"></i>
                 </span>
-                <input type="text" class="form-control" placeholder="Enter your full name" required>
+                <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Enter your full name" required autofocus>
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Email --}}
@@ -228,7 +233,10 @@
                 <span class="input-group-text">
                     <i class="bi bi-envelope"></i>
                 </span>
-                <input type="email" class="form-control" placeholder="you@example.com" required>
+                <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="you@example.com" required>
+                @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Password --}}
@@ -237,7 +245,7 @@
                 <span class="input-group-text">
                     <i class="bi bi-lock"></i>
                 </span>
-                <input type="password" id="password" class="form-control password-input" placeholder="Create a password" required>
+                <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror password-input" placeholder="Create a password" required>
                 <button type="button" class="btn show-password" onclick="showPassword()">
                     <i class="bi bi-eye" id="passwordIcon"></i>
                 </button>
@@ -249,7 +257,7 @@
                 <span class="input-group-text">
                     <i class="bi bi-shield-lock"></i>
                 </span>
-                <input type="password" id="confirmPassword" class="form-control password-input" placeholder="Confirm your password" required>
+                <input type="password" name="password_confirmation" id="confirmPassword" class="form-control password-input" placeholder="Confirm your password" required>
                 <button type="button" class="btn show-confirm-password show-password" onclick="showConfirmPassword()">
                     <i class="bi bi-eye" id="confirmIcon"></i>
                 </button>
@@ -274,20 +282,6 @@
 </div>
 
 <script>
-    function registerPage(event) {
-        event.preventDefault();
-        let password = document.getElementById("password");
-        let confirmPassword = document.getElementById("confirmPassword");
-
-        if (password.value !== confirmPassword.value) {
-            alert("Passwords do not match!");
-            return;
-        }
-
-        alert("Account created successfully!");
-        window.location.href = "{{ route('login') }}";
-    }
-
     function showPassword() {
         let password = document.getElementById("password");
         let icon = document.getElementById("passwordIcon");

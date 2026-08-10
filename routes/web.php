@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
@@ -50,7 +51,7 @@ Route::put('/products/update/{id}',[ProductController::class,'update'])->name('u
 Route::delete('/products/delete/{id}',[ProductController::class,'destroy'])->name('delete.products');
 
 
-// Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth','role_user:admin','throttle:3,1'])->group(function(){
     
     // User / Employee 
     Route::get('/users/index', [UserController::class, 'index'])->name('users.index');
@@ -68,20 +69,20 @@ Route::delete('/products/delete/{id}',[ProductController::class,'destroy'])->nam
         return view('admin.Employee.index');
     })->name('admin.employees.index');
     
-// });
+});
 
 
 
 
 // Login page shows first
-Route::get('/', function () {
-    return view('auth.login');
-})->name('login');
+Route::get('', [AuthController::class, 'loginForm'])->name('login');
+Route::post('/login/', [AuthController::class, 'storeLogin'])->name('login.store');
 
 // Register page
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
+Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
+Route::post('/register', [AuthController::class, 'storeRegister'])->name('register.store');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 

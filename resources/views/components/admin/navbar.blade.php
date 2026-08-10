@@ -27,7 +27,7 @@
 
         <div class="ml-auto flex items-center gap-3">
             {{-- Search --}}
-            <form
+            <!-- <form
                 action="#"
                 method="GET"
                 class="hidden md:block"
@@ -54,7 +54,7 @@
                         class="h-12 w-80 rounded-xl border border-slate-200 bg-white pl-12 pr-4 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
                     >
                 </div>
-            </form>
+            </form> -->
 
             {{-- Notification --}}
             <button
