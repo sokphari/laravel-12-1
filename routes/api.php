@@ -1,6 +1,7 @@
 <?php
 
-    use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BrandController;
+use Illuminate\Support\Facades\Route;
 
     Route::get('/testapi',function(){
         return response()->json([
@@ -20,4 +21,13 @@
         ],200);
     });
 
+
+    Route::controller(BrandController::class)
+    ->group(function(){
+        Route::get('/','index')->name('index.get');
+        Route::post('/create','store');
+        Route::delete('/create/{id}','destroy');
+        Route::put('/create/{id}','update');
+        Route::get('/create/{id}','shoe');
+    });
 ?>
