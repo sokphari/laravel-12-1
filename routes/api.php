@@ -26,8 +26,16 @@ use Illuminate\Support\Facades\Route;
     ->group(function(){
         Route::get('/','index')->name('index.get');
         Route::post('/create','store');
-        Route::delete('/create/{id}','destroy');
-        Route::put('/create/{id}','update');
-        Route::get('/create/{id}','shoe');
+        Route::delete('/delete/{id}','destroy');
+        Route::put('/update/{id}','update');
+        Route::get('/show/{id}','show');
+
     });
 ?>
+
+
+
+
+
+<!-- JavaScript 
+async await     -->
